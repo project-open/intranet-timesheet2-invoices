@@ -65,6 +65,7 @@
   <msg key="lt_You_have_selected_mul">You have selected multiple clients</msg>
   <msg key="lt_You_have_selected_mul_1">You have selected multiple clients.</msg>
   <msg key="MSM">MSM</msg>
+  <msg key="Material">Material</msg>
   <msg key="Name">Name</msg>
   <msg key="New_cost_type">New %cost_type%</msg>
   <msg key="New_Customer_Invoice_from_Timesheet_Tasks">New Customer Invoice from Timesheet Tasks</msg>

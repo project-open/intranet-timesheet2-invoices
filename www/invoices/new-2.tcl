@@ -101,9 +101,10 @@ from
 "]
 
 if {$num_clients > 1} {
-        ad_return_complaint "[_ intranet-timesheet2-invoices.lt_You_have_selected_mul]" "
+    ad_return_complaint "[_ intranet-timesheet2-invoices.lt_You_have_selected_mul]" "
         <li>[_ intranet-timesheet2-invoices.lt_You_have_selected_mul_1]<BR>
             [_ intranet-timesheet2-invoices.lt_Please_backup_and_res]"
+    return
 }
 
 
