@@ -204,7 +204,7 @@ db_foreach select_tasks $sql {
 		<tr><td colspan=$colspan>&nbsp;</td></tr>
 		<tr>
 		  <td class=rowtitle colspan=$colspan>
-	            <A href=/intranet/projects/view?group_id=$project_id>
+	            <A href=/intranet/projects/view?project_id=$project_id>
 		      $project_short_name
 		    </A>: 
 		    $project_name
