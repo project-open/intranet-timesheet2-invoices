@@ -102,6 +102,7 @@ db_1row invoices_info_query "
 select 
 	c.*,
         o.*,
+	c.invoice_template_id as template_id,
 	im_email_from_user_id(c.accounting_contact_id) as company_contact_email,
 	im_name_from_user_id(c.accounting_contact_id) as  company_contact_name,
 	c.company_name,
@@ -430,6 +431,4 @@ foreach task_id $in_clause_list {
     append include_task_html "<input type=hidden name=include_task value=$task_id>\n"
 }
 
-db_release_unused_handles
 
-ad_return_template
