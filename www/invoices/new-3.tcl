@@ -95,31 +95,6 @@ set template_id ""
 
 
 # ---------------------------------------------------------------
-# Gather company data from company_id
-# ---------------------------------------------------------------
-
-db_1row invoices_info_query "
-select 
-	c.*,
-        o.*,
-	c.invoice_template_id as template_id,
-	im_email_from_user_id(c.accounting_contact_id) as company_contact_email,
-	im_name_from_user_id(c.accounting_contact_id) as  company_contact_name,
-	c.company_name,
-	c.company_path,
-	c.company_path as company_short_name,
-        cc.country_name
-from
-	im_companies c, 
-        im_offices o,
-        country_codes cc
-where 
-        c.company_id = :company_id
-        and c.main_office_id=o.office_id(+)
-        and o.address_country_code=cc.iso(+)
-"
-
-# ---------------------------------------------------------------
 # 6. Select and render invoicable items 
 # ---------------------------------------------------------------
 
