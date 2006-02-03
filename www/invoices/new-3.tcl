@@ -68,6 +68,13 @@ set tasks_where_clause "task_id in ([join $in_clause_list ","])"
 # We already know that all tasks are from the same company,
 # and we asume that the company_id is set from new-2.tcl.
 
+if { [catch {
+    db_1row invoices_info_query ""
+} err_msg] } {
+    ad_return_complaint 1 [lang::message::lookup "" intranet-timesheet2-invoices.Company_not_found "We didn't find any information about company\# %company_id%."]
+}
+
+
 # Create the default values for a new invoice.
 #
 # Calculate the next invoice number by calculating the maximum of
