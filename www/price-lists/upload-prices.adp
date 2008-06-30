@@ -7,4 +7,4 @@
 <property name="context">@context_bar@</property>
 <property name="main_navbar_label">finance</property>
 
-@page_body;noquote@
+@page_content;noquote@
