@@ -271,6 +271,7 @@ if {$aggregate_tasks_p} {
 			sum(t.unbilled_units) as unbilled_sum,
 			parent.project_id as project_id,	
 			im_material_name_from_id(t.task_material_id) as task_name,
+			NULL as task_id,
 			t.task_type_id,
 			t.uom_id,
 			t.company_id,
@@ -371,7 +372,6 @@ if {$aggregate_tasks_p} {
 				and h.invoice_id is null
 			)
 		END as unbilled_sum,
-
 		p.company_id,
 		parent.project_id,
 		p.project_name as task_name,
