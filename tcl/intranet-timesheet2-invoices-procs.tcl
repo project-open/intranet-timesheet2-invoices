@@ -281,6 +281,9 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 	    set task_disabled "disabled"
 	}
 
+	# Deal with the case of projects that don't have UoM
+	if {"" == $uom_id} { set uom_id [im_uom_hour] }
+
 	switch $uom_id {
 	    321 {
 		set all_reported_units $all_reported_days
