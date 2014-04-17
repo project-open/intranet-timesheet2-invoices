@@ -200,7 +200,6 @@ switch $order_by {
     "Delivery Date" { set order_by_clause "order by end_date" }
     "Client" { set order_by_clause "order by company_name" }
     "Words" { set order_by_clause "order by task_words" }
-    "Final User" { set order_by_clause "order by final_company" }
     "Project #" { set order_by_clause "order by project_nr" }
     "Project Manager" { set order_by_clause "order by upper(lead_name)" }
     "URL" { set order_by_clause "order by upper(url)" }
