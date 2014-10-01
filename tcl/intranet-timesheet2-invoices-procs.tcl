@@ -39,7 +39,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Task_Type]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Material]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Rate]</td>
-	  <td class=rowtitle>[im_gif del "Delete"]</td>
+	  <td class=rowtitle>[im_gif -translate_p 1 del "Delete"]</td>
 </tr>"
 
     set price_sql "
@@ -135,7 +135,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 
     set task_table_rows "
     <tr> 
-	<td class=rowtitle align=middle>[im_gif help "Include in Invoice"]</td>
+	<td class=rowtitle align=middle>[im_gif -translate_p 1 help "Include in Invoice"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Task_Name "Task Name"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Material "Material"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Planned_br_Units "Planned<br>Units"]</td>
@@ -143,7 +143,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.All_br_Reported_br_Units "All<br>Reported<br>Units"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Reported_br_Units_in_br_Interval "Reported<br>Units in<br>Interval"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.All_Unbilled_Units "All<br>Unbilled<br>Units"]</td>
-	<td align=center class=rowtitle>[lang::message::lookup ""  intranet-timesheet2-invoices.UoM "UoM"]<br>[im_gif help "Unit of Measure"]</td>
+	<td align=center class=rowtitle>[lang::message::lookup ""  intranet-timesheet2-invoices.UoM "UoM"]<br>[im_gif -translate_p 1 help "Unit of Measure"]</td>
 <!--	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Type Type]</td> -->
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Status Status]</td>
     </tr>
