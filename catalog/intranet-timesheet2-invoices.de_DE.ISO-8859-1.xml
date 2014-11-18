@@ -5,11 +5,11 @@
   <msg key="Add_New">Neuer Eintrag</msg>
   <msg key="Adress">Addresse</msg>
   <msg key="Aggregate_tasks_of_the_same_material">Gleiche Aufgaben zusammenfassen?</msg>
-  <msg key="All_br_Reported_br_Units">Alle&amp;lt;br&amp;gt;gemeldeten&amp;lt;br&amp;gt;Einheiten</msg>
+  <msg key="All_br_Reported_br_Units">Alle gemeldeten&lt;br&gt;Einheiten</msg>
   <msg key="All_Reported_Hours_help">Alle gemeldeten Stunden: Alle Zeiterfassungsstunden, die seit dem Erstellen der Aufgabe oder des Projekts kontiert wurden.</msg>
-  <msg key="All_Unbilled_Units">Alle nicht abgerechneten Einheiten</msg>
+  <msg key="All_Unbilled_Units">Alle nicht&lt;br&gt;abgerechneten&lt;br&gt;Einheiten</msg>
   <msg key="Amount">Betrag</msg>
-  <msg key="Billable_br_Units">Abrechnungsfähige&amp;lt;br&amp;gt;Einheiten</msg>
+  <msg key="Billable_br_Units">Abrechnungsfähige&lt;br&gt;Einheiten</msg>
   <msg key="Billable_Units">Abrechenbare Einheiten</msg>
   <msg key="Billable_Units_help">Abrechnungsfähige Einheiten: Anzahl der abrechnungsfähigen Stunden für jede Aufgabe. Ähnlich den Geplanten Einheiten, aber diese können auch nicht abrechnungsfähige Stunden für Presales oder Fehlerbehebung aufweisen.</msg>
   <msg key="Cell_Phone">Handy</msg>
@@ -92,7 +92,7 @@
   <msg key="Payment_Method">Zahlungsmethode</msg>
   <msg key="Payment_terms">Zahlungsbedingungen</msg>
   <msg key="Phone">Telefon</msg>
-  <msg key="Planned_br_Units">Geplante&amp;lt;br&amp;gt;Einheiten</msg>
+  <msg key="Planned_br_Units">Geplante&lt;br&gt;Einheiten</msg>
   <msg key="Planned_Units">geplante Einheiten</msg>
   <msg key="Planned_Units_help">Geplante Einheiten: Geschätzte Anzahl an Stunden für jede Aufgabe, wie während der Projektplanung festgelegt.</msg>
   <msg key="Previous_Page">vorherige Seite</msg>
@@ -112,7 +112,7 @@
   <msg key="Recr_Test">Freizeit Test</msg>
   <msg key="Reference_Prices">Referenzpreise</msg>
   <msg key="Rep">Rep</msg>
-  <msg key="Reported_br_Units_in_br_Interval">Gemeldete&amp;lt;br&amp;gt;Einheiten für das&amp;lt;br&amp;gt;Intervall</msg>
+  <msg key="Reported_br_Units_in_br_Interval">Gemeldete&lt;br&gt;Einheiten für das&lt;br&gt;Intervall</msg>
   <msg key="Reported_Units">gemeldete Einheiten</msg>
   <msg key="Reported_Units_Interval_help">Gemeldete Einheiten für das Intervall: Kontierte Stunden zwischen 'Startdatum' und 'Enddatum' (siehe Filter oben).</msg>
   <msg key="Save">Speichern</msg>
