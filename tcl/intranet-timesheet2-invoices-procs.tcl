@@ -10,6 +10,39 @@ ad_library {
 }
 
 
+
+# ------------------------------------------------------
+# Permissions
+# ------------------------------------------------------
+
+
+ad_proc -public im_timesheet_invoice_permissions {
+    {-debug 0}
+    current_user_id
+    invoice_id
+    view_var
+    read_var
+    write_var
+    admin_var
+} {
+    Fill the "by-reference" variables read, write and admin
+    with the permissions of $current_user_id on $user_id
+} {
+    upvar $view_var view
+    upvar $read_var read
+    upvar $write_var write
+    upvar $admin_var admin
+
+    set view 0
+    set read 0
+    set write 0
+    set admin 0
+
+    im_cost_permissions $currrent_user_id $invoice_id view_p read_p write_p admin_p
+
+}
+
+
 # ------------------------------------------------------
 # Price List
 # ------------------------------------------------------
