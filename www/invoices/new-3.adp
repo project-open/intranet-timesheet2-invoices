@@ -133,7 +133,7 @@
   </div>
 
   <!-- the list of task sums, distinguised by type and UOM -->
-  <table width=100%>
+  <table width="100%">
     <tr>
       <td align=left><table border=0 cellspacing=2 cellpadding=1>
         @task_sum_html;noquote@
