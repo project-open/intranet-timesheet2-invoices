@@ -40,7 +40,7 @@ if {!$write || ![im_permission $user_id add_finance]} {
 }
 
 if {"" == $currency} {
-    set currency [ad_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
+    set currency [im_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
 }
 
 # ------------------------------------------------------------------

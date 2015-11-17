@@ -186,14 +186,14 @@ set default_vat 0
 set default_tax 0
 set default_payment_method_id ""
 set default_template_id ""
-set default_payment_days [ad_parameter -package_id [im_package_cost_id] "DefaultCompanyInvoicePaymentDays" "" 30] 
+set default_payment_days [im_parameter -package_id [im_package_cost_id] "DefaultCompanyInvoicePaymentDays" "" 30] 
 
 # Should we show a "Material" field for invoice lines?
-set material_enabled_p [ad_parameter -package_id [im_package_invoices_id] "ShowInvoiceItemMaterialFieldP" "" 0]
-set project_type_enabled_p [ad_parameter -package_id [im_package_invoices_id] "ShowInvoiceItemProjectTypeFieldP" "" 1]
+set material_enabled_p [im_parameter -package_id [im_package_invoices_id] "ShowInvoiceItemMaterialFieldP" "" 0]
+set project_type_enabled_p [im_parameter -package_id [im_package_invoices_id] "ShowInvoiceItemProjectTypeFieldP" "" 1]
 
 # Should we show the "Tax" field?
-set tax_enabled_p [ad_parameter -package_id [im_package_invoices_id] "EnabledInvoiceTaxFieldP" "" 1]
+set tax_enabled_p [im_parameter -package_id [im_package_invoices_id] "EnabledInvoiceTaxFieldP" "" 1]
 
 if {[info exists customer_id]} {
     db_0or1row customer_info "

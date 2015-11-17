@@ -83,7 +83,7 @@ set subproject_types [list "t" "[_ intranet-timesheet2-invoices.Yes]" "f" "[_ in
 set page_title "[_ intranet-timesheet2-invoices.Invoices]"
 set context_bar [im_context_bar $page_title]
 set page_focus "im_header_form.keywords"
-set default_currency [ad_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
+set default_currency [im_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
 
 set filter_company_id $company_id
 
@@ -107,7 +107,7 @@ if {"" == $target_cost_type_id} {
 }
 
 if { [empty_string_p $how_many] || $how_many < 1 } {
-    set how_many [ad_parameter -package_id [im_package_core_id] NumberResultsPerPage "" 100]
+    set how_many [im_parameter -package_id [im_package_core_id] NumberResultsPerPage "" 100]
 }
 set end_idx [expr $start_idx + $how_many - 1]
 
