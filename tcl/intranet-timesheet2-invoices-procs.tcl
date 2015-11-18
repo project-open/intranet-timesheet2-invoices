@@ -64,7 +64,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
     set colspan 7
     set price_list_html "
 <form action=/intranet-timesheet2-invoices/price-lists/price-action method=POST>
-[export_form_vars company_id return_url]
+[export_vars -form {company_id return_url}]
 <table border=0>
 <tr><td colspan=$colspan class=rowtitle align=center>[_ intranet-timesheet2-invoices.Price_List]</td></tr>
 <tr class=rowtitle> 

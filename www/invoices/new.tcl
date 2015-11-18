@@ -446,7 +446,7 @@ set left_navbar_html "
 	<tr>
 	  <td>
 		<form method=GET action='/intranet-timesheet2-invoices/invoices/new'>
-		[export_form_vars start_idx order_by how_many target_cost_type_id view_name include_subprojects_p letter]
+		[export_vars -form {start_idx order_by how_many target_cost_type_id view_name include_subprojects_p letter}]
 		<table border=0 cellpadding=0 cellspacing=0>
 		<tr>
 		  <td valign=top>

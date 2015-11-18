@@ -6,7 +6,7 @@
 <property name="left_navbar">@left_navbar_html;noquote@</property>
 
 <form method=POST action='new-2'>
-<%=[export_form_vars target_cost_type_id]%>
+<%= [export_vars -form {target_cost_type_id}] %>
 <table class="table_list_page" width="100%" cellpadding=2 cellspacing=2 border=0>
 	@table_header_html;noquote@
 	@table_body_html;noquote@
