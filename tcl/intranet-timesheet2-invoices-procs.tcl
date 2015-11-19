@@ -134,8 +134,8 @@ order by
 </form>
 <ul>
   <li>
-    <a href=/intranet-timesheet2-invoices/price-lists/upload-prices?[export_url_vars company_id return_url]>
-      [_ intranet-timesheet2-invoices.Upload_prices]</A>
+    <a href=/intranet-timesheet2-invoices/price-lists/upload-prices?[export_vars -url {company_id return_url}]>
+    [_ intranet-timesheet2-invoices.Upload_prices]</A>
     [_ intranet-timesheet2-invoices.lt_for_this_company_via_]
   <li>
     [_ intranet-timesheet2-invoices.lt_Check_this_sample_pra]

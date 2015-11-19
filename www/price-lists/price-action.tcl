@@ -32,7 +32,7 @@ if {$return_url == ""} {
 # "Add New" button pressed?
 # => Redirect to new.tcl page
 if {"" != $add_new} {
-    ad_returnredirect "new?[export_url_vars company_id return_url]"
+    ad_returnredirect "new?[export_vars -url {company_id return_url}]"
     return
 }
 
