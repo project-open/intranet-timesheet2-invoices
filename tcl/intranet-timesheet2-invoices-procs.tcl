@@ -99,12 +99,12 @@ order by
     set old_currency ""
     db_foreach prices $price_sql {
 
-	if {"" != $old_currency && ![string equal $old_currency $currency]} {
+	if {"" != $old_currency && $old_currency ne $currency } {
 	    append price_rows_html "<tr><td colspan=$colspan>&nbsp;</td></tr>\n"
 	}
 
 	append price_rows_html "
-        <tr $bgcolor([expr $ctr % 2]) nobreak>
+        <tr $bgcolor([expr {$ctr % 2}]) nobreak>
 	  <td>$uom</td>
 	  <td>$task_type</td>
 	  <td>$material</td>
@@ -115,7 +115,7 @@ order by
 	set old_currency $currency
     }
 
-    if {$price_rows_html != ""} {
+    if {$price_rows_html ne ""} {
 	append price_list_html $price_rows_html
     } else {
 	append price_list_html "<tr><td colspan=$colspan align=center><i>[_ intranet-timesheet2-invoices.No_prices_found]</i></td></tr>\n"
@@ -134,7 +134,7 @@ order by
 </form>
 <ul>
   <li>
-    <a href=/intranet-timesheet2-invoices/price-lists/upload-prices?[export_vars -url {company_id return_url}]>
+    <a href=/intranet-timesheet2-invoices/price-lists/[export_vars -base upload-prices {company_id return_url}]>
     [_ intranet-timesheet2-invoices.Upload_prices]</A>
     [_ intranet-timesheet2-invoices.lt_for_this_company_via_]
   <li>
@@ -338,7 +338,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 	}
 
 	append task_table_rows "
-	<tr $bgcolor([expr $ctr % 2])> 
+	<tr $bgcolor([expr {$ctr % 2}])> 
 	  <td align=middle><input type=checkbox name=include_task value=$project_id $task_disabled $task_checked></td>
 	  <td align=left><nobr>$indent <A href=/intranet/projects/view?project_id=$project_id>$project_name</a></nobr></td>
 	  <td align=left>$material_name</td>
@@ -354,7 +354,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 	incr ctr
     }
 
-    if {[string equal "" $task_table_rows]} {
+    if {$task_table_rows eq ""} {
 	set task_table_rows "<tr><td colspan=$colspan align=center>[lang::message::lookup "" intranet-timesheet2-invoices.No_tasks_found "No tasks found"]</td></tr>"
     }
 

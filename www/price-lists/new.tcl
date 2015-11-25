@@ -29,7 +29,7 @@ set focus "price.var_name"
 set page_title "[_ intranet-timesheet2-invoices.New_Price]"
 set context [im_context_bar $page_title]
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 
 # Check permissions. "See details" is an additional check for
 # critical information

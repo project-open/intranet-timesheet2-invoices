@@ -21,10 +21,10 @@ ad_page_contract {
     {return_url ""}
 }
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set page_body "<PRE>\n"
 
-if {$return_url == ""} {
+if {$return_url eq ""} {
     set return_url "/intranet/"
 }
 
@@ -32,7 +32,7 @@ if {$return_url == ""} {
 # "Add New" button pressed?
 # => Redirect to new.tcl page
 if {"" != $add_new} {
-    ad_returnredirect "new?[export_vars -url {company_id return_url}]"
+    ad_returnredirect [export_vars -base new {company_id return_url}]
     return
 }
 

@@ -2,26 +2,26 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <master src="../../../intranet-core/www/master">
-<property name="title"></property>
+<property name="doc(title)"></property>
 <property name="main_navbar_label">finance</property>
-<property name="sub_navbar">@sub_navbar;noquote@</property>
+<property name="sub_navbar">@sub_navbar;literal@</property>
 
-<table cellspacing=5 cellpadding=0>
-<tr valign=top>
+<table cellspacing="5" cellpadding="0">
+<tr valign="top">
 <td>
 
-	<table cellspacing=0 cellpadding=1>
+	<table cellspacing="0" cellpadding="1">
 	<tr class=rowtitle>
 	    <td class=rowtitle>Filter Reported Hours</td>
 	</tr>
-	<tr valign=top>
+	<tr valign="top">
 	    <td><formtemplate id=filter></formtemplate></td>
 	</tr>
 	</table>
 
 </td>
 <td>
-	<table cellspacing=0 cellpadding=1>
+	<table cellspacing="0" cellpadding="1">
 	<tr>
 	<td>
 		<h4><%= [lang::message::lookup "" intranet-timesheet2-invoices.Timesheet_Invoicing_Wizard "Timesheet Invoicing Wizard"] %></h4>
@@ -44,15 +44,15 @@
 <form action=new-3 method=POST>
 <%= [export_vars -form {company_id invoice_currency cost_center_id target_cost_type_id return_url select_project start_date end_date}] %>
 
-<table cellpadding=1 cellspacing=1 border=0>
+<table cellpadding="1" cellspacing="1" border="0">
     @task_table_rows;noquote@
 
     <tr>
-	<td colspan=10 align=right>
-		<input type=checkbox name=aggregate_tasks_p value=1 checked>
+	<td colspan="10" align="right">
+		<input type="checkbox" name="aggregate_tasks_p" value="1" checked>
 		<%= [lang::message::lookup "" intranet-timesheet2-invoices.Aggregate_tasks_of_the_same_material "Aggregate tasks of the same Material"] %>
 
-		<input type=submit name=submit value='<%= [lang::message::lookup "" intranet-timesheet2-invoices.lt_Select_Tasks_for_Invo "Select Tasks for Invoicing"] %>'>
+		<input type="submit" name="submit" value='<%= [lang::message::lookup "" intranet-timesheet2-invoices.lt_Select_Tasks_for_Invo "Select Tasks for Invoicing"] %>'>
 
         </td>
     </tr>

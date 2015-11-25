@@ -39,7 +39,7 @@ ad_page_contract {
 # Defaults & Security
 # ---------------------------------------------------------------
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set org_company_id $company_id
 
 set number_format "99990.099"
@@ -66,7 +66,7 @@ if {![im_permission $user_id add_invoices]} {
 }
 
 set allowed_cost_type [im_cost_type_write_permissions $user_id]
-if {[lsearch -exact $allowed_cost_type $target_cost_type_id] == -1} {
+if {$target_cost_type_id ni $allowed_cost_type} {
     ad_return_complaint "Insufficient Privileges" "
         <li>You can't create documents of type \#$target_cost_type_id."
     ad_script_abort
@@ -525,13 +525,13 @@ order by
 
 	    append reference_price_html "
 	<tr>
-	  <td class=$bgcolor([expr $price_list_ctr % 2])>$price_company_name</td>
-	  <td class=$bgcolor([expr $price_list_ctr % 2])>$price_uom</td>
-	  <td class=$bgcolor([expr $price_list_ctr % 2])>$price_task_type</td>
-	  <td class=$bgcolor([expr $price_list_ctr % 2])>$price_material</td>
-<!--	  <td class=$bgcolor([expr $price_list_ctr % 2])>$valid_from</td>		-->
-<!--	  <td class=$bgcolor([expr $price_list_ctr % 2])>$valid_through</td> 	-->
-	  <td class=$bgcolor([expr $price_list_ctr % 2])>$price $invoice_currency</td>
+	  <td class=$bgcolor([expr {$price_list_ctr % 2}])>$price_company_name</td>
+	  <td class=$bgcolor([expr {$price_list_ctr % 2}])>$price_uom</td>
+	  <td class=$bgcolor([expr {$price_list_ctr % 2}])>$price_task_type</td>
+	  <td class=$bgcolor([expr {$price_list_ctr % 2}])>$price_material</td>
+<!--	  <td class=$bgcolor([expr {$price_list_ctr % 2}])>$valid_from</td>		-->
+<!--	  <td class=$bgcolor([expr {$price_list_ctr % 2}])>$valid_through</td> 	-->
+	  <td class=$bgcolor([expr {$price_list_ctr % 2}])>$price $invoice_currency</td>
 	</tr>\n"
 	
 	    incr price_list_ctr
@@ -541,7 +541,7 @@ order by
 	append reference_price_html "<tr><td colspan=$price_colspan>&nbsp;</td></tr>\n"
 
 	append task_sum_html "
-	<tr $bgcolor([expr $ctr % 2])> 
+	<tr $bgcolor([expr {$ctr % 2}])> 
 	  <td>
 	    <input type=text name=item_sort_order.$ctr size=2 value='$ctr'>
 	  </td>

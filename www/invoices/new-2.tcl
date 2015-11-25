@@ -30,7 +30,7 @@ ad_page_contract {
 # ---------------------------------------------------------------
 
 # User id already verified by filters
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set current_user_id $user_id
 set current_url [im_url_with_query]
 set page_focus "im_header_form.keywords"
@@ -51,7 +51,7 @@ if {![im_permission $user_id add_invoices]} {
 # Do we need the cost_center_id for creating a new invoice?
 # This is necessary if the invoice_nr depends on the cost_center_id (profit center).
 set cost_center_required_p [parameter::get_from_package_key -package_key "intranet-invoices" -parameter "NewInvoiceRequiresCostCenterP" -default 0]
-if {$cost_center_required_p && ($cost_center_id == "" || $cost_center_id == 0)} {
+if {$cost_center_required_p && ($cost_center_id eq "" || $cost_center_id == 0)} {
     ad_returnredirect [export_vars -base "/intranet-invoices/new-cost-center-select" {
 	{pass_through_variables {cost_type_id customer_id provider_id project_id invoice_currency create_invoice_from_template select_project source_cost_type_id target_cost_type_id start_date end_date}}
 	select_project
@@ -73,7 +73,7 @@ if {$cost_center_required_p && ($cost_center_id == "" || $cost_center_id == 0)} 
 set target_cost_type [im_category_from_id $target_cost_type_id]
 
 set allowed_cost_type [im_cost_type_write_permissions $current_user_id]
-if {[lsearch -exact $allowed_cost_type $target_cost_type_id] == -1} {
+if {$target_cost_type_id ni $allowed_cost_type} {
     ad_return_complaint "Insufficient Privileges" "
         <li>You can't create documents of type \#$target_cost_type_id."
     ad_script_abort

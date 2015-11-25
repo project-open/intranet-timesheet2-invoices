@@ -14,7 +14,7 @@ ad_page_contract {
     company_id:integer
 }
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set page_title "[_ intranet-timesheet2-invoices.lt_Upload_Client_Prices_]"
 
 set context_bar [im_context_bar [list "/intranet/companies/" "[_ intranet-timesheet2-invoices.Clients]"] "[_ intranet-timesheet2-invoices.Upload_CSV]"]

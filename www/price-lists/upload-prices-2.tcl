@@ -15,7 +15,7 @@ ad_page_contract {
     upload_file
 } 
 
-set current_user_id [ad_maybe_redirect_for_registration]
+set current_user_id [auth::require_login]
 set page_title "<#_ Upload New File/URL#>"
 set page_body "<PRE>\n<A HREF=$return_url><#_ Return to Company Page#></A>\n"
 set context_bar [im_context_bar [list "/intranet/cusomers/" "<#_ Clients#>"] "<#_ Upload CSV#>"]
@@ -31,14 +31,14 @@ if { $max_n_bytes && ([file size $tmp_filename] > $max_n_bytes) } {
 }
 
 # strip off the C:\directories... crud and just get the file name
-if ![regexp {([^//\\]+)$} $upload_file match company_filename] {
+if {![regexp {([^//\\]+)$} $upload_file match company_filename]} {
     # couldn't find a match
     set company_filename $upload_file
 }
 
 if {[regexp {\.\.} $company_filename]} {
     set error "<#_ Filename contains forbidden characters#>"
-    ad_returnredirect "/error.tcl?[export_vars -url {error}]"
+    ad_returnredirect [export_vars -base /error.tcl {error}]
 }
 
 if {![file readable $tmp_filename]} {
@@ -72,8 +72,8 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     append page_body "<#_ Line #%i%#>: $csv_line\n"
 
     # Skip empty lines or line starting with "#"
-    if {[string equal "" [string trim $csv_line]]} { continue }
-    if {[string equal "#" [string range $csv_line 0 0]]} { continue }
+    if {"" eq [string trim $csv_line]} { continue }
+    if {"#" eq [string range $csv_line 0 0]} { continue }
 
 
     # Preset values, defined by CSV sheet:
@@ -109,23 +109,23 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     set material_id ""
 
     set errmsg ""
-    if {![string equal "" $uom]} {
+    if {$uom ne ""} {
         set uom_id [db_string get_uom_id "select category_id from im_categories where category_type='Intranet UoM' and category=:uom" -default 0]
         if {$uom_id == 0} { append errmsg "<li>Didn't find UoM '$uom'\n" }
     }
 
-    if {![string equal "" $company]} {
+    if {$company ne ""} {
          set price_company_id [db_string get_company_id "select company_id from im_companies where company_path = :company" -default 0]
          if {$price_company_id == 0} { append errmsg "<li>Didn't find Company '$company'\n" }
          if {$price_company_id != $company_id} { append errmsg "<li>Uploading prices for the wrong company ('$price_company_id' instead of '$company_id')" }
     }
 
-    if {![string equal "" $task_type]} {
+    if {$task_type ne ""} {
         set task_type_id [db_string get_uom_id "select category_id from im_categories where category_type='Intranet Project Type' and category=:task_type"  -default 0]
         if {$task_type_id == 0} { append errmsg "<li>Didn't find Task Type '$task_type'\n" }
     }
 
-    if {![string equal "" $material]} {
+    if {$material ne ""} {
 	set material_id [db_string matid "select material_id from im_materials where lower(trim(material_name)) = lower(trim(:material))"  -default ""]
 	if {"" == $material_id} {
 	    set material_id [db_string matid "select material_id from im_materials where lower(trim(material_nr)) = lower(trim(:material))"  -default ""]
@@ -153,7 +153,7 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
        :valid_from, :valid_through, :currency, :price
     )"
 
-    if {[string equal "" $errmsg]} {
+    if {$errmsg eq ""} {
         if { [catch {
              db_dml insert_price $insert_price_sql
         } err_msg] } {

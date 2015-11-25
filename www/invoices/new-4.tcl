@@ -51,7 +51,7 @@ ad_page_contract {
 # Defaults & Security
 # ---------------------------------------------------------------
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set current_user_id $user_id
 
 if {![im_permission $user_id add_invoices]} {
