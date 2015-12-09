@@ -196,7 +196,7 @@ switch $order_by {
     "Deliver" { set order_by_clause "order by deliver_date" }
     "Close" { set order_by_clause "order by Close_date" }
     "Type" { set order_by_clause "order by project_type" }
-    "Status" { set order_by_clause "order by project_status_id" }
+    "Status" { set order_by_clause "order by project_status" }
     "Delivery Date" { set order_by_clause "order by end_date" }
     "Client" { set order_by_clause "order by company_name" }
     "Words" { set order_by_clause "order by task_words" }
