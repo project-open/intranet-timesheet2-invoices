@@ -440,7 +440,7 @@ set admin_html ""
 set left_navbar_html "
       <div class='filter-block'>
          <div class='filter-title'>
-            #intranet-core.Filter_Projects#
+            [_ intranet-core.Filter_Projects]
          </div>
 	<table>
 	<tr>
@@ -485,7 +485,7 @@ set left_navbar_html "
 	  </td>
 	</tr>
 	<tr>
-	  <td>#intranet-timesheet2-invoices.lt_To_create_a_new_invoi#</td>
+          <td>[_ intranet-timesheet2-invoices.lt_To_create_a_new_invoi]</td>
 	</tr>
 	</table>
       </div>
