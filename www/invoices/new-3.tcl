@@ -416,7 +416,7 @@ select
 	c.company_path as price_company_name,
 	im_category_from_id(p.uom_id) as price_uom,
 	im_category_from_id(p.task_type_id) as price_task_type,
-	im_category_from_id(p.material_id) as price_material
+	acs_object__name(p.material_id) as price_material
 from
 	(
 		(select 
