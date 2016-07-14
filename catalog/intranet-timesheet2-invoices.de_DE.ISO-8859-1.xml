@@ -14,7 +14,7 @@
   <msg key="Billable_Units_help">Abrechnungsfähige Einheiten: Anzahl der abrechnungsfähigen Stunden für jede Aufgabe. Ähnlich den Geplanten Einheiten, aber diese können auch nicht abrechnungsfähige Stunden für Presales oder Fehlerbehebung aufweisen.</msg>
   <msg key="Cell_Phone">Handy</msg>
   <msg key="Client">Kunde</msg>
-  <msg key="Clients">Clients</msg>
+  <msg key="Clients">Kunden</msg>
   <msg key="Company">Firma</msg>
   <msg key="Company_name">Firmenname</msg>
   <msg key="context">Kontext</msg>
@@ -26,7 +26,7 @@
   <msg key="Delete">löschen</msg>
   <msg key="Delivery_Date">Lieferdatum</msg>
   <msg key="Description">Beschreibung</msg>
-  <msg key="Edit_cost_type">bearbeite %cost_type%</msg>
+  <msg key="Edit_cost_type">Bearbeiten %cost_type%</msg>
   <msg key="Email">E-Mail</msg>
   <msg key="Fax">Fax</msg>
   <msg key="Filter_Invoices">Filter Rechnungen</msg>
@@ -52,7 +52,7 @@
   <msg key="lt_Generate_Purchase_Ord">Auftrag erstellen</msg>
   <msg key="lt_Insufficient_Privileg">Unzureichende Rechte</msg>
   <msg key="lt_It_contains_some_comm">Kommentare sind in der Datei enthalten.</msg>
-  <msg key="lt_Please_backup_and_res">Bitte Daten sichern und die Auswahl der Projekte von einem einzigen Client beschränken.</msg>
+  <msg key="lt_Please_backup_and_res">Bitte Daten sichern und die Auswahl der Projekte von einem einzigen Kunden beschränken.</msg>
   <msg key="lt_sample_pricelist_CSV_">Beispiel Preisliste in CSV-Format</msg>
   <msg key="lt_Select_Projects_for_I">Projekte auswählen</msg>
   <msg key="lt_Select_Tasks_for_Invo">Aufgaben auswählen</msg>
@@ -62,18 +62,18 @@
   <msg key="lt_Unknown_action_for_pr">Unbekannte Aktion für Preis-Aktion.</msg>
   <msg key="lt_UOMtd__________td_cla">ME#&amp;lt;/td&amp;gt;
           &amp;lt;td class=rowtitle&amp;gt;&amp;lt;#_ Rate</msg>
-  <msg key="lt_Upload_Client_Prices_">Upload Client Preise CSV</msg>
+  <msg key="lt_Upload_Client_Prices_">Kundenpreise von CSV importieren</msg>
   <msg key="lt_Use_the_quotBrowsequo">Klicken Sie auf die Schaltfläche &amp;amp;quot;Durchsuchen...&amp;amp;quot;, um die Datei zu suchen. Klicken Sie anschließend auf &amp;amp;quot;Öffnen&amp;amp;quot;.</msg>
   <msg key="lt_You_dont_have_suffici">Sie verfügen über nicht ausreichende Berechtigungen, um diese Seite zu sehen.</msg>
   <msg key="lt_You_have_insufficient">Sie verfügen über nicht ausreichende Berechtigungen, um diese Seite zu sehen.</msg>
   <msg key="lt_You_have_insufficient_1">Sie verfügen über nicht ausreichende Berechtigungen, um diese Seite zu nutzen.</msg>
-  <msg key="lt_You_have_selected_mul">Sie haben mehrere Clients ausgewählt</msg>
-  <msg key="lt_You_have_selected_mul_1">Sie haben mehrere Clients ausgewählt
+  <msg key="lt_You_have_selected_mul">Sie haben mehrere Kunden ausgewählt</msg>
+  <msg key="lt_You_have_selected_mul_1">Sie haben mehrere Kunden ausgewählt
 </msg>
   <msg key="Material">Material</msg>
   <msg key="MSM">MSM</msg>
   <msg key="Name">Name</msg>
-  <msg key="New_cost_type">Neu %cost_type%</msg>
+  <msg key="New_cost_type">Neue(s) %cost_type%</msg>
   <msg key="New_Customer_Invoice_from_Timesheet_Tasks">Neue Kundenrechnung von Zeiterfassungsaufgaben</msg>
   <msg key="New_Invoice">Neue Rechnung</msg>
   <msg key="New_lt_Quoteintranet-coreQuo">Neue Notiz</msg>
@@ -84,6 +84,7 @@
   <msg key="Next_Page">Nächste Seite</msg>
   <msg key="No">Nein</msg>
   <msg key="No_company_found">Keine Firma gefunden</msg>
+  <msg key="No_Information">Keine Informationen über Aufgaben verfügar</msg>
   <msg key="No_prices_found">Keine Preise gefunden</msg>
   <msg key="No_tasks_found">Keine Aufgaben gefunden</msg>
   <msg key="No_Trans_Tasks">Es wurden keine Übersetzungsaufgaben für dieses Projekt gefunden.</msg>
@@ -99,8 +100,8 @@
   <msg key="Price">Preis</msg>
   <msg key="Price_List">Preisliste</msg>
   <msg key="Project_">Projekt</msg>
-  <msg key="Project_br_Status">Projekt&amp;lt;br&amp;gt;status</msg>
-  <msg key="Project_br_Type">Projekt&amp;lt;br&amp;gt;typ</msg>
+  <msg key="Project_br_Status">Projekt&lt;br&gt;Status</msg>
+  <msg key="Project_br_Type">Projekt&lt;br&gt;Typ</msg>
   <msg key="Project_Name">Projektname</msg>
   <msg key="Project_Status">Projektstatus</msg>
   <msg key="Project_Type">Projekttyp</msg>
@@ -114,7 +115,7 @@
   <msg key="Rep">Rep</msg>
   <msg key="Reported_br_Units_in_br_Interval">Gemeldete&lt;br&gt;Einheiten für das&lt;br&gt;Intervall</msg>
   <msg key="Reported_Units">gemeldete Einheiten</msg>
-  <msg key="Reported_Units_Interval_help">Gemeldete Einheiten für das Intervall: Kontierte Stunden zwischen 'Startdatum' und 'Enddatum' (siehe Filter oben).</msg>
+  <msg key="Reported_Units_Interval_help">Gemeldete Einheiten für das Intervall: Kontierte Stunden zwischen &#39;Startdatum&#39; und &#39;Enddatum&#39; (siehe Filter oben).</msg>
   <msg key="Save">Speichern</msg>
   <msg key="Sel">Ausw</msg>
   <msg key="Source">Quelle</msg>
