@@ -274,8 +274,9 @@ if {$aggregate_tasks_p} {
 			sum(t.units_in_interval) as interval_sum,
 			sum(t.unbilled_units) as unbilled_sum,
 			parent.project_id as project_id,	
-			t.task_id,
-			im_material_name_from_id(t.task_material_id) as task_name,
+			-- t.task_id,
+			parent.project_id as task_id,	
+			im_material_name_from_id(t.task_material_id) || ' - ' || im_category_from_id(t.task_type_id) as task_name,
 			t.task_type_id,
 			t.uom_id,
 			t.company_id,
@@ -285,6 +286,7 @@ if {$aggregate_tasks_p} {
 				t.planned_units,
 				t.billable_units,
 				t.task_id,
+				(select count(*) from im_projects cchild where cchild.parent_id = t.task_id) as children_count,
 				CASE WHEN t.uom_id = 321 THEN
 					(select sum(h.days) from im_hours h where h.project_id = p.project_id)
 				ELSE
@@ -330,14 +332,14 @@ if {$aggregate_tasks_p} {
 			) t,
 			im_projects parent
 		where
-			t.project_id = parent.project_id
+			t.project_id = parent.project_id and
+			t.children_count = 0				-- exclude super-tasks
 		group by
 			t.task_material_id,
 			t.task_type_id,
 			t.uom_id,
 			t.company_id,
-			parent.project_id,
-			t.task_id
+			parent.project_id
     "
 
 } else {
@@ -475,6 +477,9 @@ order by
 		p.project_id
     "
 
+
+# ad_return_complaint 1 [im_ad_hoc_query -format html $task_sum_sql]
+
     set ctr 1
     set old_project_id 0
     set colspan 6
@@ -518,7 +523,6 @@ order by
 	set price_list_ctr 1
 	set best_match_price 0
 	db_foreach references_prices $reference_price_sql {
-
 	    ns_log Notice "new-3: company_id=$company_id, uom_id=$uom_id => price=$price, relevancy=$price_relevancy"
 	    # Take the first line of the result list (=best score) as a price proposal:
 	    if {$price_list_ctr == 1} {set best_match_price $price}

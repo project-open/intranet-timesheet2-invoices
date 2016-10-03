@@ -227,6 +227,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 		children.project_id,
 		children.project_name,
 		children.project_nr,
+		(select count(*) from im_projects childchild where childchild.parent_id = children.project_id) as children_count,
 		im_category_from_id(children.project_status_id) as project_status,
 		im_category_from_id(children.project_type_id) as project_type,
 		tree_level(children.tree_sortkey) - tree_level(parent.tree_sortkey) as level,
@@ -300,22 +301,24 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 	set task_checked ""
 	set task_disabled ""	
 	if {0 == [llength $include_task]} {
-	    
-	    # Called from the Wizard Page - Enabled tasks
-	    # according to the task's material.
+	    # Called from the Wizard Page - enabled tasks according to the task's material.
 	    if {"f" != $material_billable_p} {
 	        set task_checked "checked"
 	    }
-		
 	} else {
-
-	    # View from the Invoice page
-	    # disable the checkbox (because it is not editable anymore).
+	    # View from the Invoice page - disable the checkbox (because it is not editable anymore).
 	    if {[lsearch $include_task $project_id] > -1} {
 		set task_checked "checked"
 	    }
 	    set task_disabled "disabled"
 	}
+
+	# Super-Task? Units in super-tasks are not counted
+	if {$children_count > 0} { 
+	    set planned_units ""
+	    set billable_units ""
+	}
+
 	if {"" == $uom_id} { set uom_id [im_uom_hour] }
 	switch $uom_id {
 	    321 {
