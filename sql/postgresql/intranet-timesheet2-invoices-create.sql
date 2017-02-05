@@ -479,7 +479,7 @@ begin
 	null,					-- context_id
 	''intranet-timesheet2-invoices'',	-- package_name
 	''invoices_timesheet_new_quote'',	-- label
-	''New Quote from Timesheet Tasks'',	-- name
+	''New Quote from Gantt Tasks'',		-- name
 	''/intranet-timesheet2-invoices/invoices/new?target_cost_type_id=3702'',   -- url
 	130,					-- sort_order
 	v_invoices_new_menu,			-- parent_menu_id
@@ -499,7 +499,7 @@ begin
 	null,					-- context_id
 	''intranet-timesheet2-invoices'',	-- package_name
 	''invoices_timesheet_new_cust_invoice'',-- label
-	''New Customer Invoice from Timesheet Tasks'',	-- name
+	''New Customer Invoice from Gantt Tasks'',	-- name
 	''/intranet-timesheet2-invoices/invoices/new?target_cost_type_id=3700'',     -- url
 	330,					-- sort_order
 	v_invoices_new_menu,			-- parent_menu_id
