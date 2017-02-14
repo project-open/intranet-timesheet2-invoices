@@ -112,7 +112,7 @@
   <msg key="Rep">Rep</msg>
   <msg key="Reported_br_Units_in_br_Interval">Unidades&lt;br&gt;reportadas en&lt;br&gt;intervalo</msg>
   <msg key="Reported_Units">Unidades reportadas</msg>
-  <msg key="Reported_Units_Interval_help">Unidades reportadas en intervalo: Horas registradas desde la 'Fecha inicial' y la 'Fecha final' (ver el filtro de arriba).</msg>
+  <msg key="Reported_Units_Interval_help">Unidades reportadas en intervalo: Horas registradas desde la &#39;Fecha inicial&#39; y la &#39;Fecha final&#39; (ver el filtro de arriba).</msg>
   <msg key="Save">Guardar</msg>
   <msg key="Sel">Sel</msg>
   <msg key="Source">Origen</msg>

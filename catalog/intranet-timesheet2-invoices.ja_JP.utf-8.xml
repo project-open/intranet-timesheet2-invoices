@@ -16,7 +16,7 @@
   <msg key="lt_Select_Tasks_for_Invo">請求書のためのタスクを選択</msg>
   <msg key="lt_There_are_currently_n">選ばれた基準にマッチする請求書がありません</msg>
   <msg key="lt_There_are_currently_n_1">選ばれた基準にマッチしているプロジェクトがありません。</msg>
-  <msg key="lt_To_create_a_new_invoi">新しい請求書を作成するために&lt;br&gt;&lt;em&gt;同じ顧客&lt;/em&gt;の一つ以上のプロジェクトを選んでください。&quot;新規請求書&quot;ページにあるボタン&lt;br&gt;を押してください。
+  <msg key="lt_To_create_a_new_invoi">新しい請求書を作成するために&lt;br&gt;&lt;em&gt;同じ顧客&lt;/em&gt;の一つ以上のプロジェクトを選んでください。&#34;新規請求書&#34;ページにあるボタン&lt;br&gt;を押してください。
 		</msg>
   <msg key="New_Customer_Invoice_from_Timesheet_Tasks">タイムシートタスクから新規顧客請求書を作成</msg>
   <msg key="New_Invoice">新規請求書</msg>

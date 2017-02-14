@@ -58,7 +58,7 @@
   <msg key="lt_Select_Tasks_for_Invo">选择需要发票的任务</msg>
   <msg key="lt_There_are_currently_n">当前没有发票匹配您选择的结果</msg>
   <msg key="lt_There_are_currently_n_1">当前没有项目匹配您选择的结果</msg>
-  <msg key="lt_To_create_a_new_invoi">要创建一个新的发票,请选择&lt;em&gt;相同客户&lt;/em&gt;的&lt;br&gt;一个或者多个项目并且在页面底部&lt;br&gt;点击 &quot;新发票&quot;按钮</msg>
+  <msg key="lt_To_create_a_new_invoi">要创建一个新的发票,请选择&lt;em&gt;相同客户&lt;/em&gt;的&lt;br&gt;一个或者多个项目并且在页面底部&lt;br&gt;点击 &#34;新发票&#34;按钮</msg>
   <msg key="lt_Unknown_action_for_pr">价格操作未知的行为</msg>
   <msg key="lt_UOMtd__________td_cla">计量单位 #&lt;/td&gt;  &lt;td class=rowtitle&gt;&lt;#_ 比率</msg>
   <msg key="lt_Upload_Client_Prices_">上传客户价格 CSV</msg>
@@ -112,7 +112,7 @@
   <msg key="Rep">重复</msg>
   <msg key="Reported_br_Units_in_br_Interval">报告&lt;br&gt;单位&lt;br&gt;间隔</msg>
   <msg key="Reported_Units">报告单位</msg>
-  <msg key="Reported_Units_Interval_help">报告单位按间隔:小时记录在 '开始日期' 与 '结束日期' 之前(查看上方筛选)</msg>
+  <msg key="Reported_Units_Interval_help">报告单位按间隔:小时记录在 &#39;开始日期&#39; 与 &#39;结束日期&#39; 之前(查看上方筛选)</msg>
   <msg key="Save">保存</msg>
   <msg key="Sel">选择</msg>
   <msg key="Source">来源</msg>

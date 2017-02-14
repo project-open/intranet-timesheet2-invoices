@@ -58,7 +58,7 @@
   <msg key="lt_Select_Tasks_for_Invo">Selecteer taken voor facturatie</msg>
   <msg key="lt_There_are_currently_n">Er zijn geen facturen die overeenkomen met de geselecteerde criteria</msg>
   <msg key="lt_There_are_currently_n_1">Er zijn geen projecten die overeenkomen met de geselecteerde criteria</msg>
-  <msg key="lt_To_create_a_new_invoi">Om een nieuwe factuur te maken moet u een of meerdere projecten&lt;br&gt;&lt;em&gt;van dezelfde klant&lt;/em&gt; selecteren en op &quot;Nieuwe factuur&quot; drukken&lt;br&gt;onderaan het scherm.</msg>
+  <msg key="lt_To_create_a_new_invoi">Om een nieuwe factuur te maken moet u een of meerdere projecten&lt;br&gt;&lt;em&gt;van dezelfde klant&lt;/em&gt; selecteren en op &#34;Nieuwe factuur&#34; drukken&lt;br&gt;onderaan het scherm.</msg>
   <msg key="lt_Unknown_action_for_pr">Onbekende actie voor deze prijs-actie.</msg>
   <msg key="lt_UOMtd__________td_cla">Meeteenheid#&lt;/td&gt;  &lt;td class=rowtitle&gt;&lt;#_ tarief</msg>
   <msg key="lt_Upload_Client_Prices_">Upload klant prijzen CSV</msg>
@@ -112,7 +112,7 @@
   <msg key="Rep">Rep</msg>
   <msg key="Reported_br_Units_in_br_Interval">Rapport&lt;br&gt;eenheden in&lt;br&gt;interval</msg>
   <msg key="Reported_Units">Gerapporteerde eenheden</msg>
-  <msg key="Reported_Units_Interval_help">Gerapporteerde eenheden in interval: uren ingevoerd tussen 'start datum' en 'einddatum' (zie bovenstaande filter).</msg>
+  <msg key="Reported_Units_Interval_help">Gerapporteerde eenheden in interval: uren ingevoerd tussen &#39;start datum&#39; en &#39;einddatum&#39; (zie bovenstaande filter).</msg>
   <msg key="Save">Bewaar</msg>
   <msg key="Sel">Selecteer</msg>
   <msg key="Source">Bron</msg>

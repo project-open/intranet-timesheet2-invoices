@@ -11,7 +11,7 @@
   <msg key="Amount">Montant</msg>
   <msg key="Billable_br_Units">Unités Facturables&amp;lt;br&amp;gt;</msg>
   <msg key="Billable_Units">Unités facturables</msg>
-  <msg key="Billable_Units_help">Unités facturables : Nombre d'heures facturables pour chaque tâche. Similiaire aux unités planifiées, mais peut comporter des heures non facturables consacrées à la prévente ou à la réparation des bugs.</msg>
+  <msg key="Billable_Units_help">Unités facturables : Nombre d&#39;heures facturables pour chaque tâche. Similiaire aux unités planifiées, mais peut comporter des heures non facturables consacrées à la prévente ou à la réparation des bugs.</msg>
   <msg key="Cell_Phone">Portable</msg>
   <msg key="Client">Client</msg>
   <msg key="Clients">Clients</msg>
@@ -52,13 +52,13 @@
   <msg key="lt_Generate_Purchase_Ord">Générer des bons de commande</msg>
   <msg key="lt_Insufficient_Privileg">Privilèges insuffisants</msg>
   <msg key="lt_It_contains_some_comm">Comporte des commentaires.</msg>
-  <msg key="lt_Please_backup_and_res">Veuillez effectuer une sauvegarde et restreindre la sélection aux projets d'un seul client.</msg>
-  <msg key="lt_sample_pricelist_CSV_">Liste d'exemple de prix au format CSV</msg>
+  <msg key="lt_Please_backup_and_res">Veuillez effectuer une sauvegarde et restreindre la sélection aux projets d&#39;un seul client.</msg>
+  <msg key="lt_sample_pricelist_CSV_">Liste d&#39;exemple de prix au format CSV</msg>
   <msg key="lt_Select_Projects_for_I">Sélectionner les Projets pour Facturation</msg>
   <msg key="lt_Select_Tasks_for_Invo">Sélectionner les Tâches pour Facturation</msg>
   <msg key="lt_There_are_currently_n">Aucune facture ne correspond aux critères de recherche.</msg>
   <msg key="lt_There_are_currently_n_1">Aucun projet ne correspond aux critères de recherche</msg>
-  <msg key="lt_To_create_a_new_invoi">Pour créer une nouvelle facture, veuillez sélectionner un ou plusieurs projets&lt;br&gt; &lt;em&gt;pour le même client&lt;/em&gt; et cliquer sur le bouton &quot;Nouvelle Facture&quot; &lt;br&gt; en bas de la page.</msg>
+  <msg key="lt_To_create_a_new_invoi">Pour créer une nouvelle facture, veuillez sélectionner un ou plusieurs projets&lt;br&gt; &lt;em&gt;pour le même client&lt;/em&gt; et cliquer sur le bouton &#34;Nouvelle Facture&#34; &lt;br&gt; en bas de la page.</msg>
   <msg key="lt_Unknown_action_for_pr">Action inconnue pour ce tarif.</msg>
   <msg key="lt_UOMtd__________td_cla">Taux UOM#&lt;/td&gt; &lt;td class=rowtitle&gt;&lt;#_ </msg>
   <msg key="lt_Upload_Client_Prices_">Importer les tarifs client en CSV</msg>
@@ -84,7 +84,7 @@
   <msg key="No_company_found">Société introuvable</msg>
   <msg key="No_prices_found">Tarif introuvable</msg>
   <msg key="No_tasks_found">Tâche introuvable</msg>
-  <msg key="No_Trans_Tasks">Aucune tâche de traduction n'a été trouvée pour ce projet.</msg>
+  <msg key="No_Trans_Tasks">Aucune tâche de traduction n&#39;a été trouvée pour ce projet.</msg>
   <msg key="One_project">Un projet</msg>
   <msg key="Order">Commande</msg>
   <msg key="Payment_Method">Mode de règlement</msg>
@@ -92,7 +92,7 @@
   <msg key="Phone">Téléphone</msg>
   <msg key="Planned_br_Units">Unités&amp;lt;br&amp;gt;planifiées</msg>
   <msg key="Planned_Units">Unités prévues</msg>
-  <msg key="Planned_Units_help">Unités planifiées : estimation du nombre d'heures pour chaque tâche, comme précisé au cours de la planification du projet.</msg>
+  <msg key="Planned_Units_help">Unités planifiées : estimation du nombre d&#39;heures pour chaque tâche, comme précisé au cours de la planification du projet.</msg>
   <msg key="Previous_Page">Page précédente</msg>
   <msg key="Price">Tarif</msg>
   <msg key="Price_List">Liste tarifaire</msg>
@@ -111,7 +111,7 @@
   <msg key="Reference_Prices">Tarifs de référence</msg>
   <msg key="Rep">Rep</msg>
   <msg key="Reported_Units">Unités reportées</msg>
-  <msg key="Reported_Units_Interval_help">Heures reportées dans l'intervalle de temps : heures enregistrées entre la 'date de départ' et la 'date de fin' (voir filtre ci-dessus).</msg>
+  <msg key="Reported_Units_Interval_help">Heures reportées dans l&#39;intervalle de temps : heures enregistrées entre la &#39;date de départ&#39; et la &#39;date de fin&#39; (voir filtre ci-dessus).</msg>
   <msg key="Save">Enregistrer</msg>
   <msg key="Sel">Sel</msg>
   <msg key="Source">Source</msg>
@@ -138,7 +138,7 @@
   <msg key="Upload_CSV">Uploader CSV</msg>
   <msg key="Upload_prices">Uploader les tarifs</msg>
   <msg key="Valid_From">Valable à partir de</msg>
-  <msg key="Valid_Through">Valable jusqu'au</msg>
+  <msg key="Valid_Through">Valable jusqu&#39;au</msg>
   <msg key="VAT">TVA</msg>
   <msg key="Work_Phone">Téléphone bureau</msg>
   <msg key="XTr">XTr</msg>

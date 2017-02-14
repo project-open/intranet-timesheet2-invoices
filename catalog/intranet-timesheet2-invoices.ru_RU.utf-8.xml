@@ -58,11 +58,11 @@
   <msg key="lt_Select_Tasks_for_Invo">Выберите задачи для включения в счет</msg>
   <msg key="lt_There_are_currently_n">Нет счетов, соответствующих заданным условиям</msg>
   <msg key="lt_There_are_currently_n_1">Нет проектов, соответствующих заданным условиям</msg>
-  <msg key="lt_To_create_a_new_invoi">Чтобы создать новый счет, выберите один или несколько проектов &lt;br&gt; &lt;em&gt;одного клиента&lt;/em&gt; и нажмите кнопку &quot;Создать счет&quot; &lt;br&gt; в конце страницы.</msg>
+  <msg key="lt_To_create_a_new_invoi">Чтобы создать новый счет, выберите один или несколько проектов &lt;br&gt; &lt;em&gt;одного клиента&lt;/em&gt; и нажмите кнопку &#34;Создать счет&#34; &lt;br&gt; в конце страницы.</msg>
   <msg key="lt_Unknown_action_for_pr">Неизвестное действие по отношению к цене.</msg>
   <msg key="lt_UOMtd__________td_cla">UOM#&lt;/td&gt; &lt;td class=rowtitle&gt;&lt;#_ Rate</msg>
   <msg key="lt_Upload_Client_Prices_">Отправить прайс-лист клиента (CSV)</msg>
-  <msg key="lt_Use_the_quotBrowsequo">Нажмите кнопку &quot;Обзор&quot;, найдите требуемый файл, затем нажмите кнопку &quot;Открыть&quot;.</msg>
+  <msg key="lt_Use_the_quotBrowsequo">Нажмите кнопку &#34;Обзор&#34;, найдите требуемый файл, затем нажмите кнопку &#34;Открыть&#34;.</msg>
   <msg key="lt_You_dont_have_suffici">У вас недостаточно разрешений для просмотра этой страницы.</msg>
   <msg key="lt_You_have_insufficient">У вас недостаточно разрешений для просмотра этой страницы</msg>
   <msg key="lt_You_have_insufficient_1">У вас недостаточно разрешений для работы на этой странице</msg>
@@ -112,7 +112,7 @@
   <msg key="Rep">Повт</msg>
   <msg key="Reported_br_Units_in_br_Interval">Учтенные&lt;br&gt;трудозатраты&lt;br&gt;в интервале</msg>
   <msg key="Reported_Units">Учтенные трудозатраты</msg>
-  <msg key="Reported_Units_Interval_help">Учтенные трудозатраты в интервале. Часы, занесенные в табель в диапазоне дат &quot;Дата начала&quot; - &quot;Дата окончания&quot; (см. фильтр выше).</msg>
+  <msg key="Reported_Units_Interval_help">Учтенные трудозатраты в интервале. Часы, занесенные в табель в диапазоне дат &#34;Дата начала&#34; - &#34;Дата окончания&#34; (см. фильтр выше).</msg>
   <msg key="Save">Сохранить</msg>
   <msg key="Sel">Выб</msg>
   <msg key="Source">Исходный</msg>
