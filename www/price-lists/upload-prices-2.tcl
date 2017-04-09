@@ -49,7 +49,7 @@ if {![file readable $tmp_filename]} {
     return
 }
     
-set csv_files_content [exec /bin/cat $tmp_filename]
+set csv_files_content [im_exec cat $tmp_filename]
 set csv_files [split $csv_files_content "\n"]
 set csv_files_len [llength $csv_files]
 set csv_header [lindex $csv_files 1]
