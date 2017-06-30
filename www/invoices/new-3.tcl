@@ -55,6 +55,7 @@ if {"" == $return_url} {set return_url [im_url_with_query] }
 set todays_date [db_string get_today "select to_char(now(), :date_format)"]
 set page_focus "im_header_form.keywords"
 set view_name "invoice_tasks"
+set outline_number_enabled_p [im_column_exists im_invoice_items item_outline_number]
 
 set bgcolor(0) " class=roweven"
 set bgcolor(1) " class=rowodd"
@@ -224,11 +225,14 @@ set due_date [db_string get_due_date "select to_date(to_char(sysdate,'YYYY-MM-DD
 # ---------------------------------------------------------------
 
 # start formatting the list of sums with the header...
-set task_sum_html "
-        <tr align=center> 
-          <td class=rowtitle>[_ intranet-timesheet2-invoices.Order]</td>
-          <td class=rowtitle>[_ intranet-timesheet2-invoices.Description]</td>
-"
+set task_sum_html "<tr align=center>\n"
+append task_sum_html "<td class=rowtitle>[_ intranet-timesheet2-invoices.Order]</td>\n"
+
+if {$outline_number_enabled_p} {
+    append task_sum_html "<td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Outline Outline]</td>\n"
+}
+
+append task_sum_html "<td class=rowtitle>[_ intranet-timesheet2-invoices.Description]</td>\n"
 if {$material_enabled_p} {
     append task_sum_html "<td class=rowtitle>[lang::message::lookup "" intranet-invoices.Material "Material"]</td>"
 }
@@ -351,6 +355,7 @@ if {$aggregate_tasks_p} {
 		t.planned_units as planned_sum,
 		t.billable_units as billable_sum,
 		t.task_id,
+		p.project_nr as outline_nr,
 		CASE WHEN t.uom_id = 321 THEN
 			(select sum(h.days) from im_hours h where h.project_id = p.project_id)
 		ELSE
@@ -466,6 +471,7 @@ order by
 		s.company_id,
 		s.project_id,
 		s.task_id,
+                s.outline_nr,
 		p.project_name,
 		p.project_path,
 		p.project_path as project_short_name,
@@ -476,9 +482,6 @@ order by
 	order by
 		p.project_id
     "
-
-
-# ad_return_complaint 1 [im_ad_hoc_query -format html $task_sum_sql]
 
     set ctr 1
     set old_project_id 0
@@ -548,7 +551,13 @@ order by
 	<tr $bgcolor([expr {$ctr % 2}])> 
 	  <td>
 	    <input type=text name=item_sort_order.$ctr size=2 value='$ctr'>
-	  </td>
+	  </td>\n"
+
+       if {$outline_number_enabled_p} {
+           append task_sum_html "<td><input type=text name=item_outline_number.$ctr size=10 value='$outline_nr'></td>\n"
+       }
+
+	append task_sum_html "
 	  <td>
 	    <input type=text name=item_name.$ctr size=40 value='[ns_quotehtml $task_name]'>
 	    <input type=hidden name=item_task_id.$ctr value='$task_id'>
