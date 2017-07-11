@@ -283,6 +283,7 @@ if {$aggregate_tasks_p} {
 			im_material_name_from_id(t.task_material_id) || ' - ' || im_category_from_id(t.task_type_id) as task_name,
 			t.task_type_id,
 			t.uom_id,
+			t.outline_nr,
 			t.company_id,
 			t.task_material_id as material_id
 		from
@@ -324,6 +325,7 @@ if {$aggregate_tasks_p} {
 				coalesce(t.material_id, :default_material_id) as task_material_id,
 				coalesce(t.uom_id, :default_uom_id) as uom_id,
 				p.project_type_id as task_type_id,
+				p.project_nr as outline_nr,
 				p.company_id
 			from 
 				im_projects parent,
@@ -342,6 +344,7 @@ if {$aggregate_tasks_p} {
 			t.task_material_id,
 			t.task_type_id,
 			t.uom_id,
+			t.outline_nr,
 			t.company_id,
 			parent.project_id
     "
