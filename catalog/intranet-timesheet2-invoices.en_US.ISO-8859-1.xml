@@ -47,7 +47,7 @@
   <msg key="lt_Create_a_new_company_">Create a new company for this freelancer</msg>
   <msg key="lt_Create_Purchase_Order">Create Purchase Order</msg>
   <msg key="lt_first_names_last_name">%first_names% %last_name% Company</msg>
-  <msg key="lt_first_names_last_name_1">%first_names% %last_name% Office</msg>
+  <msg key="lt_first_names_last_name_1">%first_names% %last_name%</msg>
   <msg key="lt_for_this_company_via_">for this company via a CSV file.</msg>
   <msg key="lt_Generate_Purchase_Ord">Generate Purchase Orders</msg>
   <msg key="lt_Insufficient_Privileg">Insufficient Privileges</msg>

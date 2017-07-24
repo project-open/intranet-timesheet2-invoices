@@ -47,7 +47,7 @@
   <msg key="lt_Create_a_new_company_">Erstelle eine neue Firma für diesen freien Mitarbeiter</msg>
   <msg key="lt_Create_Purchase_Order">Neuer Auftrag</msg>
   <msg key="lt_first_names_last_name">%first_names% %last_name% Firma</msg>
-  <msg key="lt_first_names_last_name_1">%first_names% %last_name% Büro</msg>
+  <msg key="lt_first_names_last_name_1">%first_names% %last_name%</msg>
   <msg key="lt_for_this_company_via_">für diese Firma durch eine CSV-Datei</msg>
   <msg key="lt_Generate_Purchase_Ord">Auftrag erstellen</msg>
   <msg key="lt_Insufficient_Privileg">Unzureichende Rechte</msg>
