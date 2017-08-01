@@ -34,7 +34,7 @@ ad_page_contract {
     tax:float
     {note ""}
     item_sort_order:array
-    item_outline_number:array
+    item_outline_number:array,optional
     item_name:array
     item_units:float,array
     item_uom_id:integer,array
@@ -55,6 +55,7 @@ ad_page_contract {
 set user_id [auth::require_login]
 set current_user_id $user_id
 set outline_number_enabled_p [im_column_exists im_invoice_items item_outline_number]
+
 
 if {![im_permission $user_id add_invoices]} {
     ad_return_complaint 1 "<li>[_ intranet-timesheet2-invoices.lt_You_dont_have_suffici]"
@@ -205,7 +206,10 @@ foreach nr $item_list {
     set rate $item_rate($nr)
     set currency $item_currency($nr)
     set sort_order $item_sort_order($nr)
-    set outline_number $item_outline_number($nr)
+    set outline_number ""
+    if { [info exists item_outline_number($nr)] } { 
+	set outline_number $item_outline_number($nr) 
+    }
     set task_id $item_task_id($nr)  
     ns_log Notice "item($nr, $name, $units, $uom_id, $project_id, $rate, $currency, $task_id)"
 
