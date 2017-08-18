@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="intranet-timesheet2-invoices" locale="pl_PL" charset="utf-8">
+
+  <msg key="New_Customer_Invoice_from_Timesheet_Tasks">Nowa faktura sprzedażowa na podstawie czasu pracy</msg>
+  <msg key="New_Quote_from_Timesheet_Tasks">Nowa wycena na podstawie czasu pracy</msg>
+</message_catalog>
