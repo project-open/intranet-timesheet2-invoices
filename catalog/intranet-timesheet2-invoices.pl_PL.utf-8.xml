@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <message_catalog package_key="intranet-timesheet2-invoices" locale="pl_PL" charset="utf-8">
 
+  <msg key="Add_New">Dodaj nową</msg>
+  <msg key="Aggregate_tasks_of_the_same_material">Połączyć taski z tym samym materiałem.</msg>
+  <msg key="All_br_Reported_br_Units">Wszystkie&lt;br/&gt;zaraportowane&lt;br/&gt;jednostki</msg>
+  <msg key="All_Reported_Hours_help">Wszystkie zaraportowane jednostki: Wszystkie godziny z ewidencji czasu pracy, które ktokolwiek zalogował od utworzenia taska lub projektu.</msg>
+  <msg key="All_Unbilled_Units">Wszystkie&lt;br/&gt;niebilowane&lt;br/&gt;jednostki</msg>
+  <msg key="Billable_br_Units">Jednostli&lt;br/&gt;bilowalne</msg>
+  <msg key="Billable_Units_help">Jednostki bilowalne: Liczba bilowalnych godzina dla każdego taska. Podobne do jednostek planowanych, ale mogą rozliczać niebilowalne godziny sprzedaży lub naprawy błędów.</msg>
+  <msg key="Client">Klient</msg>
+  <msg key="Company">Firma</msg>
+  <msg key="Create_lt_Fakturaintranet-coreC">Utwórz</msg>
+  <msg key="Create_lt_Wycenaintranet-coreQu">Utwórz</msg>
+  <msg key="Del">Usuń</msg>
+  <msg key="Delivery_Date">Data dostawy</msg>
+  <msg key="Description">Opis</msg>
+  <msg key="Invoice_Currency">Waluta faktury</msg>
+  <msg key="Invoice_Data">Dane faktury</msg>
+  <msg key="Invoice_date">Data faktury</msg>
+  <msg key="Invoice_nr">Nr faktury</msg>
+  <msg key="Invoice_template">Wzorzec faktury</msg>
+  <msg key="Invoices">Faktury</msg>
+  <msg key="lt_Check_this_sample_pra">Sprawdź ten %sample_pracelist_link%.</msg>
+  <msg key="lt_for_this_company_via_">dla tej firmy z pliku CSV.</msg>
+  <msg key="lt_It_contains_some_comm">Zawiera on użyteczne komentarze.</msg>
+  <msg key="lt_sample_pricelist_CSV_">przykładowy plik CSC z cenami</msg>
+  <msg key="lt_Select_Projects_for_I">Wybierz projekty do faktury</msg>
+  <msg key="lt_Select_Tasks_for_Invo">Wybierz taski do faktury</msg>
+  <msg key="lt_To_create_a_new_invoi">Aby utworzyć nową fakturę wybierz jeden&lt;br/&gt;
+lub więcej projektów &lt;em&gt;dla tego samego&lt;br/&gt;
+klienta&lt;/em&gt; i naciśnij przycisk &#34;Nowa faktura&#34;&lt;br/&gt; na dole strony.</msg>
+  <msg key="Material">Materiał</msg>
   <msg key="New_Customer_Invoice_from_Timesheet_Tasks">Nowa faktura sprzedażowa na podstawie czasu pracy</msg>
+  <msg key="New_lt_Fakturaintranet-coreC">Nowa</msg>
   <msg key="New_Quote_from_Timesheet_Tasks">Nowa wycena na podstawie czasu pracy</msg>
+  <msg key="Next_Page">Następna strona</msg>
+  <msg key="No">Nie</msg>
+  <msg key="No_prices_found">Nie znaleziono żadnych cen</msg>
+  <msg key="Order">Kolejność</msg>
+  <msg key="Payment_Method">Metoda płatności</msg>
+  <msg key="Payment_terms">Warunki płatności</msg>
+  <msg key="Planned_br_Units">Jednostki&lt;br&gt;planowane</msg>
+  <msg key="Planned_Units_help">Jednostki planowane: Szacowana liczba godzin na każdy task, tak jak to było wyspecyfikowane podczas planowania projektu.</msg>
+  <msg key="Previous_Page">Poprzednia strona</msg>
+  <msg key="Price">Cena</msg>
+  <msg key="Price_List">Ceny pracy dla firmy</msg>
+  <msg key="Project_">Projekt</msg>
+  <msg key="Project_br_Status">Status&lt;br/&gt;projektu</msg>
+  <msg key="Project_br_Type">Typ&lt;br/&gt;projektu</msg>
+  <msg key="Project_Name">Nazwa projektu</msg>
+  <msg key="Rate">Stawka</msg>
+  <msg key="Recipient">Odbiorca</msg>
+  <msg key="Reference_Prices">Ceny referencyjne</msg>
+  <msg key="Reported_br_Units_in_br_Interval">Jednostki&lt;br/&gt;zaraportowane&lt;br/&gt;w przedziale</msg>
+  <msg key="Reported_Units_Interval_help">Jednostki zaraportowane w przedziale: Godziny zalogowane między &#34;Data początkowa&#34; i &#34;Data końcowa&#34; (spójrz na filtr).</msg>
+  <msg key="Status">Status</msg>
+  <msg key="Task_Name">Nazwa tasku</msg>
+  <msg key="Task_Type">Typ taska</msg>
+  <msg key="TAX">TAX</msg>
+  <msg key="Timesheet_Invoicing_Wizard">Wizard fakturowania czasu pracy</msg>
+  <msg key="Timesheet_Invoicing_Wizard_help">Ten wizard pozwala ci na utworzenie dokumentu finansowego z danych projektowych na cztery różne sposoby:</msg>
+  <msg key="Type">Typ</msg>
+  <msg key="Units">Jednostki</msg>
+  <msg key="UOM">UoM</msg>
+  <msg key="UoM">UoM</msg>
+  <msg key="Upload_prices">Załaduj ceny</msg>
+  <msg key="Valid_From">Ważne od</msg>
+  <msg key="Valid_Through">Ważne do</msg>
+  <msg key="VAT">VAT</msg>
+  <msg key="Yes">Tak</msg>
 </message_catalog>

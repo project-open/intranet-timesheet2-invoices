@@ -20,7 +20,9 @@
   <msg key="context">context</msg>
   <msg key="Country">Country</msg>
   <msg key="Create_Invoice">Create Invoice</msg>
+  <msg key="Create_lt_Fakturaintranet-coreC">Create</msg>
   <msg key="Create_lt_Quoteintranet-coreQuo">Create Quote</msg>
+  <msg key="Create_lt_Wycenaintranet-coreQu">Create</msg>
   <msg key="Currency">Currency</msg>
   <msg key="Del">Del</msg>
   <msg key="Delete">Delete</msg>
@@ -50,6 +52,7 @@
   <msg key="lt_first_names_last_name_1">%first_names% %last_name%</msg>
   <msg key="lt_for_this_company_via_">for this company via a CSV file.</msg>
   <msg key="lt_Generate_Purchase_Ord">Generate Purchase Orders</msg>
+  <msg key="lt_input_typecheckbox_na">Checkbox</msg>
   <msg key="lt_Insufficient_Privileg">Insufficient Privileges</msg>
   <msg key="lt_It_contains_some_comm">It contains some comments inside.</msg>
   <msg key="lt_Please_backup_and_res">Please backup and restrict the selection to the projects of a single client.</msg>
@@ -77,6 +80,7 @@
   <msg key="New_cost_type">New %cost_type%</msg>
   <msg key="New_Customer_Invoice_from_Timesheet_Tasks">New Customer Invoice from Timesheet Tasks</msg>
   <msg key="New_Invoice">New Invoice</msg>
+  <msg key="New_lt_Fakturaintranet-coreC">New</msg>
   <msg key="New_lt_Quoteintranet-coreQuo">New Quote</msg>
   <msg key="New_Price">New Price</msg>
   <msg key="New_Purchase_Order">New Purchase Order</msg>
