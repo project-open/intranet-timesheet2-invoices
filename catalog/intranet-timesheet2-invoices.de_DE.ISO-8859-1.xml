@@ -58,7 +58,7 @@
   <msg key="lt_Select_Tasks_for_Invo">Aufgaben auswählen</msg>
   <msg key="lt_There_are_currently_n">Es gibt derzeit keine passenden Rechnungen für die ausgewählten Kriterien</msg>
   <msg key="lt_There_are_currently_n_1">Es gibt derzeit keine passenden Projekte für die ausgewählten Kriterien</msg>
-  <msg key="lt_To_create_a_new_invoi">Bitte wählen sie ein oder mehr Projekte&lt;br&gt;&lt;em&gt;des selben Kunden&lt;/em&gt; und bestätigen sie</msg>
+  <msg key="lt_To_create_a_new_invoi">Bitte wählen Sie ein oder mehrere Projekte&lt;br&gt;&lt;em&gt;desselben Kunden&lt;/em&gt; und bestätigen Sie.</msg>
   <msg key="lt_Unknown_action_for_pr">Unbekannte Aktion für Preis-Aktion.</msg>
   <msg key="lt_UOMtd__________td_cla">ME#&amp;lt;/td&amp;gt;
           &amp;lt;td class=rowtitle&amp;gt;&amp;lt;#_ Rate</msg>
@@ -74,7 +74,7 @@
   <msg key="MSM">MSM</msg>
   <msg key="Name">Name</msg>
   <msg key="New_cost_type">Neue(s) %cost_type%</msg>
-  <msg key="New_Customer_Invoice_from_Timesheet_Tasks">Neue Kundenrechnung von Zeiterfassungsaufgaben</msg>
+  <msg key="New_Customer_Invoice_from_Timesheet_Tasks">Neue Kundenrechnung auf Basis von Aufgaben</msg>
   <msg key="New_Invoice">Neue Rechnung</msg>
   <msg key="New_lt_Quoteintranet-coreQuo">Neue Notiz</msg>
   <msg key="New_Price">Neuer Preis</msg>
@@ -100,8 +100,8 @@
   <msg key="Price">Preis</msg>
   <msg key="Price_List">Preisliste</msg>
   <msg key="Project_">Projekt</msg>
-  <msg key="Project_br_Status">Projekt&lt;br&gt;Status</msg>
-  <msg key="Project_br_Type">Projekt&lt;br&gt;Typ</msg>
+  <msg key="Project_br_Status">Projekt-&lt;br&gt;Status</msg>
+  <msg key="Project_br_Type">Projekt-&lt;br&gt;Typ</msg>
   <msg key="Project_Name">Projektname</msg>
   <msg key="Project_Status">Projektstatus</msg>
   <msg key="Project_Type">Projekttyp</msg>
