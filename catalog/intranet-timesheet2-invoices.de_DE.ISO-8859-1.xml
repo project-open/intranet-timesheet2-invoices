@@ -20,7 +20,9 @@
   <msg key="context">Kontext</msg>
   <msg key="Country">Land</msg>
   <msg key="Create_Invoice">Neue Rechnung</msg>
+  <msg key="Create_lt_Fakturaintranet-coreC">Erzeugen</msg>
   <msg key="Create_lt_Quoteintranet-coreQuo">Notiz erstellen</msg>
+  <msg key="Create_lt_Wycenaintranet-coreQu">Erzeugen</msg>
   <msg key="Currency">Währung</msg>
   <msg key="Del">Löschen</msg>
   <msg key="Delete">löschen</msg>
@@ -50,6 +52,7 @@
   <msg key="lt_first_names_last_name_1">%first_names% %last_name%</msg>
   <msg key="lt_for_this_company_via_">für diese Firma durch eine CSV-Datei</msg>
   <msg key="lt_Generate_Purchase_Ord">Auftrag erstellen</msg>
+  <msg key="lt_input_typecheckbox_na">Checkbox</msg>
   <msg key="lt_Insufficient_Privileg">Unzureichende Rechte</msg>
   <msg key="lt_It_contains_some_comm">Kommentare sind in der Datei enthalten.</msg>
   <msg key="lt_Please_backup_and_res">Bitte Daten sichern und die Auswahl der Projekte von einem einzigen Kunden beschränken.</msg>
@@ -76,6 +79,7 @@
   <msg key="New_cost_type">Neue(s) %cost_type%</msg>
   <msg key="New_Customer_Invoice_from_Timesheet_Tasks">Neue Kundenrechnung auf Basis von Aufgaben</msg>
   <msg key="New_Invoice">Neue Rechnung</msg>
+  <msg key="New_lt_Fakturaintranet-coreC">Neu</msg>
   <msg key="New_lt_Quoteintranet-coreQuo">Neue Notiz</msg>
   <msg key="New_Price">Neuer Preis</msg>
   <msg key="New_Purchase_Order">Neuer Auftrag</msg>
@@ -140,7 +144,7 @@
   <msg key="Units">Einheiten</msg>
   <msg key="UOM">Einheit</msg>
   <msg key="UoM">Einheit</msg>
-  <msg key="Upload_CSV">Upload CSV</msg>
+  <msg key="Upload_CSV">CSV hochladen</msg>
   <msg key="Upload_prices">Preise hochladen</msg>
   <msg key="Valid_From">gültig ab</msg>
   <msg key="Valid_Through">gültig bis</msg>
