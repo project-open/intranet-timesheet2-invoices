@@ -51,10 +51,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
     Returns a formatted HTML table representing the 
     prices for the current company
 } {
-
-    if {![im_permission $user_id view_costs]} {
-        return ""
-    }
+    if {![im_permission $user_id view_costs]} { return "" }
 
     set bgcolor(0) " class=roweven "
     set bgcolor(1) " class=rowodd "
@@ -64,35 +61,42 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
     set colspan 7
     set price_list_html "
 <form action=/intranet-timesheet2-invoices/price-lists/price-action method=POST>
-[export_vars -form {company_id return_url}]
+ [export_vars -form {company_id return_url}]
 <table border=0>
 <tr><td colspan=$colspan class=rowtitle align=center>[_ intranet-timesheet2-invoices.Price_List]</td></tr>
 <tr class=rowtitle> 
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.UoM]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Task_Type]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Material]</td>
+	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Project "Project"]</td>
+	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.From "From"]</td>
+	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Through "Through"]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Rate]</td>
 	  <td class=rowtitle>[im_gif -translate_p 1 del "Delete"]</td>
 </tr>"
 
     set price_sql "
-select
-	p.*,
-	c.company_path as company_short_name,
-	im_category_from_id(uom_id) as uom,
-	im_category_from_id(task_type_id) as task_type,
-	im_material_nr_id(material_id) as material
-from
-	im_timesheet_prices p,
-	im_companies c
-where 
-	p.company_id=:company_id
-	and p.company_id=c.company_id(+)
-order by
-	currency,
-	uom_id,
-	task_type_id desc
-"
+	select
+		tp.*,
+		c.company_path as company_short_name,
+		im_category_from_id(tp.uom_id) as uom,
+		im_category_from_id(tp.task_type_id) as task_type,
+		to_char(tp.valid_from, 'YYYY-MM-DD') as valid_from,
+		to_char(tp.valid_through, 'YYYY-MM-DD') as valid_through,
+		im_material_nr_from_id(tp.material_id) as material,
+		p.project_nr
+	from
+		im_timesheet_prices tp
+		LEFT OUTER JOIN im_companies c ON (tp.company_id = c.company_id)
+		LEFT OUTER JOIN im_projects p ON (tp.project_id = p.project_id)
+	where 
+		tp.company_id = :company_id
+	order by
+		tp.currency,
+		tp.uom_id,
+		tp.material_id,
+		tp.task_type_id desc
+    "
 
     set price_rows_html ""
     set ctr 1
@@ -103,11 +107,16 @@ order by
 	    append price_rows_html "<tr><td colspan=$colspan>&nbsp;</td></tr>\n"
 	}
 
+	set url [export_vars -base "/intranet-timesheet2-invoices/price-lists/new" {price_id}]
+
 	append price_rows_html "
         <tr $bgcolor([expr {$ctr % 2}]) nobreak>
-	  <td>$uom</td>
+	  <td><a href='$url'>$uom</a></td>
 	  <td>$task_type</td>
 	  <td>$material</td>
+	  <td>$project_nr</td>
+	  <td>$valid_from</td>
+	  <td>$valid_through</td>
           <td>[format $price_format $price] $currency</td>
           <td><input type=checkbox name=price_id.$price_id></td>
 	</tr>"

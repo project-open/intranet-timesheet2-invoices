@@ -271,6 +271,9 @@ create table im_timesheet_prices (
 	material_id		integer
 				constraint im_timesheet_prices_material_fk
 				references im_materials,
+	project_id		integer
+				constraint im_timesheet_prices_project_fk
+				references im_projects,
 	valid_from		timestamptz,
 	valid_through		timestamptz,
 				-- make sure the end date is after start date
