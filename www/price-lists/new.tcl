@@ -39,7 +39,7 @@ if {![im_permission $user_id add_finance]} {
 }
 
 # Get the company_id if the price_id exists
-if {[info exists price_id]} {
+if {[info exists price_id] && ![info exists company_id]} {
     db_1row price_info "
 	select	company_id
 	from	im_timesheet_prices
@@ -87,8 +87,8 @@ ad_form \
 	{task_type_id:text(im_category_tree),optional {label "[_ intranet-timesheet2-invoices.Task_Type]"} {custom {category_type "Intranet Project Type" translate_p 1 include_empty_p 1}} }
 	{material_id:text(select),optional {label "[_ intranet-timesheet2-invoices.Material]"} {options $material_options} }
 	{project_id:text(select),optional {label "[_ intranet-core.Project]"} {options $project_options} }
-	{valid_from:date(date),optional {label "[_ intranet-timesheet2.Start_Date]"} {after_html {<input type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" onclick ="return showCalendarWithDateWidget('start_date', 'y-m-d');" >}} }
-	{valid_through:date(date),optional {label "[_ intranet-timesheet2.End_Date]"} {after_html {<input type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" onclick ="return showCalendarWithDateWidget('end_date', 'y-m-d');" >}} }
+	{valid_from:date(date),optional {label "[_ intranet-timesheet2.Start_Date]"} {after_html {<input type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" onclick ="return showCalendarWithDateWidget('valid_from', 'y-m-d');" >}} }
+	{valid_through:date(date),optional {label "[_ intranet-timesheet2.End_Date]"} {after_html {<input type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" onclick ="return showCalendarWithDateWidget('valid_through', 'y-m-d');" >}} }
 	{price:text(text) {label "[_ intranet-timesheet2-invoices.Price]"} {html {size 10}}}
 	{currency:text(select) {label "[_ intranet-timesheet2-invoices.Currency]"} {options $currency_options} }
     }
@@ -101,6 +101,10 @@ ad_form -extend -name price -on_request {
 	from	im_timesheet_prices p
 	where	p.price_id = :price_id
 } -new_data {
+
+    set valid_from_sql [template::util::date get_property sql_date $valid_from]
+    set valid_through_sql [template::util::date get_property sql_timestamp $valid_through]
+
     db_dml price_insert "
 	insert into im_timesheet_prices (
 		price_id,
@@ -108,6 +112,9 @@ ad_form -extend -name price -on_request {
 		company_id,
 		task_type_id,
 		material_id,
+		project_id,
+		valid_from,
+		valid_through,
 		currency,
 		price
 	) values (
@@ -116,19 +123,29 @@ ad_form -extend -name price -on_request {
 		:company_id,
 		:task_type_id,
 		:material_id,
+		:project_id,
+		$valid_from_sql,
+		$valid_through_sql,
 		:currency,
 		:price
 	)
     "
 } -edit_data {
+
+    set valid_from_sql [template::util::date get_property sql_date $valid_from]
+    set valid_through_sql [template::util::date get_property sql_timestamp $valid_through]
+
     db_dml price_update "
-	update im_prices set
-	        package_name    = :package_name,
-	        label           = :label,
-	        name            = :name,
-	        url             = :url,
-	        sort_order      = :sort_order,
-	        parent_price_id = :parent_price_id
+	update im_timesheet_prices set
+	        uom_id = :uom_id,
+	        company_id = :company_id,
+	        task_type_id = :task_type_id,
+	        material_id = :material_id,
+	        project_id = :project_id,
+	        valid_from = $valid_from_sql,
+	        valid_through = $valid_through_sql,
+	        currency = :currency,
+	        price = :price
 	where
 		price_id = :price_id
     "

@@ -55,10 +55,11 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 
     set bgcolor(0) " class=roweven "
     set bgcolor(1) " class=rowodd "
-#    set price_format "000.00"
     set price_format "%0.2f"
-
     set colspan 7
+    set return_url [im_url_with_query]
+
+
     set price_list_html "
 <form action=/intranet-timesheet2-invoices/price-lists/price-action method=POST>
  [export_vars -form {company_id return_url}]
@@ -107,7 +108,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 	    append price_rows_html "<tr><td colspan=$colspan>&nbsp;</td></tr>\n"
 	}
 
-	set url [export_vars -base "/intranet-timesheet2-invoices/price-lists/new" {price_id}]
+	set url [export_vars -base "/intranet-timesheet2-invoices/price-lists/new" {price_id return_url}]
 
 	append price_rows_html "
         <tr $bgcolor([expr {$ctr % 2}]) nobreak>
