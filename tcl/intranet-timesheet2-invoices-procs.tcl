@@ -38,7 +38,7 @@ ad_proc -public im_timesheet_invoice_permissions {
     set write 0
     set admin 0
 
-    im_cost_permissions $currrent_user_id $invoice_id view_p read_p write_p admin_p
+    im_cost_permissions $current_user_id $invoice_id view_p read_p write_p admin_p
 
 }
 
