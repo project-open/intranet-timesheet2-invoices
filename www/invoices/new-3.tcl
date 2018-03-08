@@ -325,7 +325,7 @@ if {$aggregate_tasks_p} {
 				coalesce(t.material_id, :default_material_id) as task_material_id,
 				coalesce(t.uom_id, :default_uom_id) as uom_id,
 				p.project_type_id as task_type_id,
-				p.project_nr as outline_nr,
+				coalesce(p.project_wbs, p.project_nr) as outline_nr,
 				p.company_id
 			from 
 				im_projects parent,
@@ -358,7 +358,7 @@ if {$aggregate_tasks_p} {
 		t.planned_units as planned_sum,
 		t.billable_units as billable_sum,
 		t.task_id,
-		p.project_nr as outline_nr,
+		coalesce(p.project_wbs, p.project_nr) as outline_nr,
 		CASE WHEN t.uom_id = 321 THEN
 			(select sum(h.days) from im_hours h where h.project_id = p.project_id)
 		ELSE
@@ -483,7 +483,7 @@ order by
 		($task_sum_inner_sql) s
 		LEFT JOIN im_projects p ON (s.project_id = p.project_id)
 	order by
-		p.project_id
+		s.outline_nr
     "
 
     set ctr 1
