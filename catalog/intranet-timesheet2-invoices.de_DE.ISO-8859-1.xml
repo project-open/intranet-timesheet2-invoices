@@ -34,6 +34,7 @@
   <msg key="Filter_Invoices">Filter Rechnungen</msg>
   <msg key="Filter_Projects">Projekte filtern</msg>
   <msg key="Finance">Finanzwesen</msg>
+  <msg key="From">Gültig ab</msg>
   <msg key="Go">Start</msg>
   <msg key="Home_Phone">Telefon privat</msg>
   <msg key="Include_in_Invoice">Einfügen in Rechnung</msg>
@@ -103,6 +104,7 @@
   <msg key="Previous_Page">vorherige Seite</msg>
   <msg key="Price">Preis</msg>
   <msg key="Price_List">Preisliste</msg>
+  <msg key="Project">Projekt</msg>
   <msg key="Project_">Projekt</msg>
   <msg key="Project_br_Status">Projekt-&lt;br&gt;Status</msg>
   <msg key="Project_br_Type">Projekt-&lt;br&gt;Typ</msg>
@@ -135,6 +137,7 @@
   <msg key="Task_Name">Aufgabenname</msg>
   <msg key="Task_Type">Aufgabentyp</msg>
   <msg key="TAX">Steuer</msg>
+  <msg key="Through">Gültig bis</msg>
   <msg key="Timesheet_Invoicing_Wizard">Timesheet Invoicing Wizard</msg>
   <msg key="Timesheet_Invoicing_Wizard_help">Mit diesem Wizard können Sie Finanzdokumente aus Projektdaten auf vier verschiedene Arten erstellen:</msg>
   <msg key="Trados_Matrix">Tradox Matrix</msg>

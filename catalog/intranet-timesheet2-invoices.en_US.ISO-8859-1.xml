@@ -34,6 +34,7 @@
   <msg key="Filter_Invoices">Filter Invoices</msg>
   <msg key="Filter_Projects">Filter Projects</msg>
   <msg key="Finance">Finance</msg>
+  <msg key="From">From</msg>
   <msg key="Go">Go</msg>
   <msg key="Home_Phone">Home Phone</msg>
   <msg key="Include_in_Invoice">Include in Invoice</msg>
@@ -104,6 +105,7 @@
   <msg key="Previous_Page">Previous Page</msg>
   <msg key="Price">Price</msg>
   <msg key="Price_List">Company Timesheet Prices</msg>
+  <msg key="Project">Project</msg>
   <msg key="Project_">Project</msg>
   <msg key="Project_br_Status">Project&lt;br&gt;Status</msg>
   <msg key="Project_br_Type">Project&lt;br&gt;Type</msg>
@@ -136,6 +138,7 @@
   <msg key="Task_Name">Task Name</msg>
   <msg key="Task_Type">Task Type</msg>
   <msg key="TAX">TAX</msg>
+  <msg key="Through">Through</msg>
   <msg key="Timesheet_Invoicing_Wizard">Timesheet Invoicing Wizard</msg>
   <msg key="Timesheet_Invoicing_Wizard_help">This wizard allows you to create a financial document from project data in four different ways:</msg>
   <msg key="Trados_Matrix">Tradox Matrix</msg>
