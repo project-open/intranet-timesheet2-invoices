@@ -190,10 +190,10 @@ db_dml update_costs "
 # ---------------------------------------------------------------
 
 # Delete the old items if they exist
-db_dml delete_invoice_items "
-	DELETE from im_invoice_items
-	WHERE invoice_id=:invoice_id
-"
+set item_ids [db_list item_ids "select item_id from im_invoice_items where invoice_id = :invoice_id"]
+foreach item_id $item_ids {
+    db_string del_invoice_item "select im_invoice_item__delete(:item_id)"
+}
 
 set item_list [array names item_name]
 foreach nr $item_list {
@@ -215,26 +215,21 @@ foreach nr $item_list {
 
     # Insert only if it's not an empty line from the edit screen
     if {!("" == [string trim $name] && (0 == $units || "" == $units))} {
-	set item_id [db_nextval "im_invoice_items_seq"]
-	set insert_invoice_items_sql "
-	INSERT INTO im_invoice_items (
-		item_id, item_name, 
-		project_id, invoice_id, 
-		item_units, item_uom_id, 
-		price_per_unit, currency, 
-		sort_order, item_type_id, 
-		item_material_id,
-		item_status_id, description, task_id
-	) VALUES (
-		:item_id, :name, 
-		:project_id, :invoice_id, 
-		:units, :uom_id, 
-		:rate, :currency, 
-		:sort_order, :type_id, 
-		:material_id,
-		null, '', :task_id
-	)"
-        db_dml insert_invoice_items $insert_invoice_items_sql
+
+	set item_id [db_string new_invoice_item "select im_invoice_item__new(
+			null, 'im_invoice_item', now(), :current_user_id, '[ad_conn peeraddr]', null,
+			:name, :invoice_id, :sort_order,
+			:units, :uom_id, :rate, :currency,
+			[im_invoice_item_type_default], [im_invoice_item_status_active]
+	)"]
+	db_dml update_new_invoice_item "
+		    	update im_invoice_items set
+			       		project_id = :project_id,
+			       		item_material_id = :material_id,
+			       		task_id = :task_id
+			where item_id = :item_id
+	"
+
 
 	if {$outline_number_enabled_p} {
 	    db_dml outline "update im_invoice_items set item_outline_number = :outline_number where item_id = :item_id"
