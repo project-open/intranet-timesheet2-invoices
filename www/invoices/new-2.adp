@@ -12,7 +12,7 @@
 
 	<table cellspacing="0" cellpadding="1">
 	<tr class=rowtitle>
-	    <td class=rowtitle>Filter Reported Hours</td>
+	    <td class=rowtitle><%= [lang::message::lookup "" intranet-timesheet2-invoices.Filter_Reported_Hours "Filter Reported Hours"] %></td>
 	</tr>
 	<tr valign="top">
 	    <td><formtemplate id=filter></formtemplate></td>
