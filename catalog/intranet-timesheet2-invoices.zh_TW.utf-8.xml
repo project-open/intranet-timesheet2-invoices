@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="intranet-timesheet2-invoices" locale="zh_TW" charset="utf-8">
+
+  <msg key="New_Customer_Invoice_from_Timesheet_Tasks">來自工時任務的新顧客發票</msg>
+  <msg key="Price_List">公司工時價格</msg>
+</message_catalog>
