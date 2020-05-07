@@ -9,7 +9,7 @@
 <property name="sub_navbar">@sub_navbar;literal@</property>
 
 <form action=new-4 method=POST>
-<%= [export_vars -form {customer_id provider_id invoice_id cost_status_id start_date end_date select_project return_url invoice_hour_type}] %>
+<%= [export_vars -form {customer_id provider_id invoice_id cost_status_id select_project return_url invoice_hour_type}] %>
 
 @include_task_html;noquote@
 
@@ -75,7 +75,21 @@
 	    <%= [im_cost_template_select template_id $default_template_id] %>
 	  </td>
         </tr>
-        </table>
+
+        <tr>
+          <td class=roweven><%= [lang::message::lookup "" intranet-timesheet2-invoices.Period_Start "Period Start"] %>:</td>
+          <td class=roweven>
+            <input type="text" name="start_date" size="15" value='@start_date@'>
+	  </td>
+        </tr>
+        <tr>
+          <td class=rowodd><%= [lang::message::lookup "" intranet-timesheet2-invoices.Period_Start "Period End"] %>:</td>
+          <td class=rowodd>
+            <input type="text" name="end_date" size="15" value='@end_date@'>
+	  </td>
+        </tr>
+
+  </table>
 
       </td>
       <td></td>
