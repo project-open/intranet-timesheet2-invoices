@@ -33,20 +33,10 @@ if {!$write} {
 # Promote
 # ---------------------------------------------------------------
 
-set count [db_string count "select count(*) from im_timesheet_invoices where invoice_id = :invoice_id"]
-if {$count < 1} {
-    db_dml insert "insert into im_timesheet_invoices (
-	invoice_id,
-	invoice_period_start,
-	invoice_period_end
-    ) values (
-	:invoice_id,
-	now() - '1 month'::interval,
-	now()
-    )"
 
-    db_dml up "update acs_objects set object_type = 'im_timesheet_invoice' where object_id = :invoice_id"
-}
+im_timesheet_invoice_promote_invoice -invoice_id $invoice_id
+
+
 
 # ---------------------------------------------------------------
 # Where do you want to go now?

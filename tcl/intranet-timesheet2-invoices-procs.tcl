@@ -373,3 +373,33 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 
     return $task_table_rows
 }
+
+
+
+
+
+# ------------------------------------------------------
+# Promote invoice to timesheet invoice
+# ------------------------------------------------------
+
+
+ad_proc -public im_timesheet_invoice_promote_invoice {
+    -invoice_id:required
+} {
+    Takes an im_invoice and adds a record to im_timesheet_invoice
+} {
+    set count [db_string count "select count(*) from im_timesheet_invoices where invoice_id = :invoice_id"]
+    if {$count < 1} {
+	db_dml insert "insert into im_timesheet_invoices (
+		invoice_id,
+		invoice_period_start,
+		invoice_period_end
+	) values (
+		:invoice_id,
+		now() - '1 month'::interval,
+		now()
+	)"
+    }
+
+    db_dml up "update acs_objects set object_type = 'im_timesheet_invoice' where object_id = :invoice_id"
+}
