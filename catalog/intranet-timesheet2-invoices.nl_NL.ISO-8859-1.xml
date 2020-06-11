@@ -20,7 +20,9 @@
   <msg key="context">context</msg>
   <msg key="Country">Land </msg>
   <msg key="Create_Invoice">Maak factuur</msg>
+  <msg key="Create_lt_Fakturaintranet-coreC">Creëer</msg>
   <msg key="Create_lt_Quoteintranet-coreQuo">Maak offerte</msg>
+  <msg key="Create_lt_Wycenaintranet-coreQu">Creëer</msg>
   <msg key="Currency">Munteenheid</msg>
   <msg key="Del">Verwijder</msg>
   <msg key="Delete">Verwijder</msg>
@@ -32,6 +34,7 @@
   <msg key="Filter_Invoices">Filter facturen</msg>
   <msg key="Filter_Projects">Filter Projecten</msg>
   <msg key="Finance">Financieel</msg>
+  <msg key="From">Van</msg>
   <msg key="Go">Toon </msg>
   <msg key="Home_Phone">Thuis telefoon</msg>
   <msg key="Include_in_Invoice">Neem op in factuur</msg>
@@ -50,6 +53,7 @@
   <msg key="lt_first_names_last_name_1">%first_names% %last_name% kantoor</msg>
   <msg key="lt_for_this_company_via_">voor dit bedrijf via en CSV bestand</msg>
   <msg key="lt_Generate_Purchase_Ord">Maak inkoop opdracht</msg>
+  <msg key="lt_input_typecheckbox_na">Checkbox</msg>
   <msg key="lt_Insufficient_Privileg">Onvoldoende rechten</msg>
   <msg key="lt_It_contains_some_comm">Dit bevat wat opmerkingen.</msg>
   <msg key="lt_Please_backup_and_res">Maak een backup en beperk uw selectie tot de projecten van een enkele klant.</msg>
@@ -74,6 +78,7 @@
   <msg key="New_cost_type">Nieuwe %cost_type%</msg>
   <msg key="New_Customer_Invoice_from_Timesheet_Tasks">Nieuwe klant factuur van uren</msg>
   <msg key="New_Invoice">Nieuwe factuur</msg>
+  <msg key="New_lt_Fakturaintranet-coreC">Nieuw</msg>
   <msg key="New_lt_Quoteintranet-coreQuo">Nieuwe Offerte</msg>
   <msg key="New_Price">Nieuwe prijs</msg>
   <msg key="New_Purchase_Order">Nieuwe aankooporder</msg>
@@ -82,6 +87,7 @@
   <msg key="Next_Page">Volgende pagina</msg>
   <msg key="No">Nee</msg>
   <msg key="No_company_found">Geen bedrijf gevonden</msg>
+  <msg key="No_Information">Er is geen informatie over de taak beschikbaar. Probeer een ander overzicht</msg>
   <msg key="No_prices_found">Geen prijzen gevonden</msg>
   <msg key="No_tasks_found">Geen taken gevonden</msg>
   <msg key="No_Trans_Tasks">Er zijn geen vertaal taken voor dit project gevonden.</msg>
@@ -96,6 +102,7 @@
   <msg key="Previous_Page">Vorige pagina</msg>
   <msg key="Price">Prijs</msg>
   <msg key="Price_List">Bedrijf tijdlijst prijzen</msg>
+  <msg key="Project">Project</msg>
   <msg key="Project_">Project</msg>
   <msg key="Project_br_Status">Project&lt;br&gt; status</msg>
   <msg key="Project_br_Type">Project&lt;br&gt;type</msg>
@@ -128,6 +135,7 @@
   <msg key="Task_Name">Taaknaam</msg>
   <msg key="Task_Type">Taak type</msg>
   <msg key="TAX">Belasting</msg>
+  <msg key="Through">Door</msg>
   <msg key="Timesheet_Invoicing_Wizard">Tijdlijst factuur wizard</msg>
   <msg key="Timesheet_Invoicing_Wizard_help">Deze wizard maakt het mogelijk om financiële documenten te generen van project data op vier verschillende manieren:</msg>
   <msg key="Trados_Matrix">Tradox matrix</msg>
