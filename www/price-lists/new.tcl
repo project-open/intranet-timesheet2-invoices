@@ -87,8 +87,8 @@ ad_form \
 	{task_type_id:text(im_category_tree),optional {label "[_ intranet-timesheet2-invoices.Task_Type]"} {custom {category_type "Intranet Project Type" translate_p 1 include_empty_p 1}} }
 	{material_id:text(select),optional {label "[_ intranet-timesheet2-invoices.Material]"} {options $material_options} }
 	{project_id:text(select),optional {label "[_ intranet-core.Project]"} {options $project_options} }
-	{valid_from:date(date),optional {label "[_ intranet-timesheet2.Start_Date]"} {after_html {<input type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" onclick ="return showCalendarWithDateWidget('valid_from', 'y-m-d');" >}} }
-	{valid_through:date(date),optional {label "[_ intranet-timesheet2.End_Date]"} {after_html {<input type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" onclick ="return showCalendarWithDateWidget('valid_through', 'y-m-d');" >}} }
+	{valid_from:date(date),optional {label "[_ intranet-timesheet2.Start_Date]"} {after_html {<input id=valid_from_calendar type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" >}} }
+	{valid_through:date(date),optional {label "[_ intranet-timesheet2.End_Date]"} {after_html {<input id=valid_through_calendar type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');">}} }
 	{price:text(text) {label "[_ intranet-timesheet2-invoices.Price]"} {html {size 10}}}
 	{currency:text(select) {label "[_ intranet-timesheet2-invoices.Currency]"} {options $currency_options} }
     }
