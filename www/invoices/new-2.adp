@@ -49,7 +49,7 @@
 
     <tr>
 	<td colspan="10" align="right">
-		<input type="checkbox" name="aggregate_tasks_p" value="1" checked>
+		<input type="checkbox" name="aggregate_tasks_p" value="1">
 		<%= [lang::message::lookup "" intranet-timesheet2-invoices.Aggregate_tasks_of_the_same_material "Aggregate tasks of the same Material"] %>
 
 		<input type="submit" name="submit" value='<%= [lang::message::lookup "" intranet-timesheet2-invoices.lt_Select_Tasks_for_Invo "Select Tasks for Invoicing"] %>'>
