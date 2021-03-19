@@ -183,6 +183,9 @@ set form_id "filter"
 set object_type "im_project"
 set action_url [export_vars -base [ns_conn url] {}]
 set form_mode "edit"
+set start_date_l10n "<nobr>[lang::message::lookup "" intranet-timesheet2-invoices.Start_Date "Start Date"]</nobr>"
+set end_date_l10n "<nobr>[lang::message::lookup "" intranet-timesheet2-invoices.End_Date "End Date"]</nobr>"
+
 
 ad_form \
     -name $form_id \
@@ -191,8 +194,8 @@ ad_form \
     -method GET \
     -export {select_project target_cost_type_id invoice_currency cost_center_id } \
     -form {
-        {start_date:text(text),optional {label "Start Date"}}
-        {end_date:text(text),optional {label "End Date"}}
+        {start_date:text(text),optional {label $start_date_l10n}}
+        {end_date:text(text),optional {label $end_date_l10n}}
     }
 
 template::element::set_value $form_id start_date $start_date
