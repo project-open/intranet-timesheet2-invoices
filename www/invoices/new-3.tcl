@@ -278,12 +278,11 @@ if {$aggregate_tasks_p} {
 			sum(t.units_in_interval) as interval_sum,
 			sum(t.unbilled_units) as unbilled_sum,
 			parent.project_id as project_id,	
-			-- t.task_id,
+			'' as outline_nr,
 			parent.project_id as task_id,	
 			im_material_name_from_id(t.task_material_id) || ' - ' || im_category_from_id(t.task_type_id) as task_name,
 			t.task_type_id,
 			t.uom_id,
-			t.outline_nr,
 			t.company_id,
 			t.task_material_id as material_id
 		from
@@ -325,7 +324,6 @@ if {$aggregate_tasks_p} {
 				coalesce(t.material_id, :default_material_id) as task_material_id,
 				coalesce(t.uom_id, :default_uom_id) as uom_id,
 				p.project_type_id as task_type_id,
-				coalesce(p.project_wbs, p.project_nr) as outline_nr,
 				p.company_id
 			from 
 				im_projects parent,
@@ -344,7 +342,6 @@ if {$aggregate_tasks_p} {
 			t.task_material_id,
 			t.task_type_id,
 			t.uom_id,
-			t.outline_nr,
 			t.company_id,
 			parent.project_id
     "
