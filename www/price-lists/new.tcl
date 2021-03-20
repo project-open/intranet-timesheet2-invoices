@@ -84,9 +84,9 @@ ad_form \
 	price_id:key(im_timesheet_prices_seq)
 	{company_id:text(hidden)}
 	{uom_id:text(select) {label "[_ intranet-timesheet2-invoices.Unit_of_Measure]"} {options $uom_options} }
-	{task_type_id:text(im_category_tree),optional {label "[_ intranet-timesheet2-invoices.Task_Type]"} {custom {category_type "Intranet Project Type" translate_p 1 include_empty_p 1}} }
 	{material_id:text(select),optional {label "[_ intranet-timesheet2-invoices.Material]"} {options $material_options} }
 	{project_id:text(select),optional {label "[_ intranet-core.Project]"} {options $project_options} }
+	{task_type_id:text(im_category_tree),optional {label "[_ intranet-timesheet2-invoices.Task_Type]"} {custom {category_type "Intranet Project Type" translate_p 1 include_empty_p 1}} }
 	{valid_from:date(date),optional {label "[_ intranet-timesheet2.Start_Date]"} {after_html {<input id=valid_from_calendar type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');" >}} }
 	{valid_through:date(date),optional {label "[_ intranet-timesheet2.End_Date]"} {after_html {<input id=valid_through_calendar type="button" style="height:23px; width:23px; background: url('/resources/acs-templating/calendar.gif');">}} }
 	{price:text(text) {label "[_ intranet-timesheet2-invoices.Price]"} {html {size 10}}}
