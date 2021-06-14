@@ -35,6 +35,9 @@ ad_page_contract {
     { aggregate_tasks_p "0" }
 }
 
+
+# ad_return_complaint 1 $include_task
+
 # ---------------------------------------------------------------
 # Defaults & Security
 # ---------------------------------------------------------------
@@ -72,6 +75,11 @@ if {$target_cost_type_id ni $allowed_cost_type} {
         <li>You can't create documents of type \#$target_cost_type_id."
     ad_script_abort
 }
+
+
+# Show the start- and end-date of the interval?
+set show_start_end_p 0
+if {"interval" eq $invoice_hour_type} { set show_start_end_p 1 }
 
 
 # ---------------------------------------------------------------------
@@ -249,7 +257,7 @@ append task_sum_html "
 # Start formatting the "reference price list" as well, even though it's going
 # to be shown at the very bottom of the page.
 #
-set price_colspan 11
+set price_colspan 5
 set reference_price_html "
         <tr>
 		<td align=middle class=rowtitle colspan=$price_colspan>[_ intranet-timesheet2-invoices.Reference_Prices]</td>
@@ -352,8 +360,12 @@ if {$aggregate_tasks_p} {
     #
     set task_sum_inner_sql "
 	select
-		t.planned_units as planned_sum,
-		t.billable_units as billable_sum,
+		-- fraber 2021-06-14 - Exclude summary tasks from planned and billable hours
+		-- These are excluded in the previous pages as well.
+		-- Maybe add an option in the new-2.tcl page to aggregate values
+		CASE WHEN (not exists (select * from im_projects ppp where p.project_id = ppp.parent_id)) THEN t.planned_units ELSE 0.0 END as planned_sum,
+		CASE WHEN (not exists (select * from im_projects ppp where p.project_id = ppp.parent_id)) THEN t.billable_units ELSE 0.0 END as billable_sum,
+		--
 		t.task_id,
 		coalesce(p.project_wbs, p.project_nr) as outline_nr,
 		CASE WHEN t.uom_id = 321 THEN
@@ -400,6 +412,9 @@ if {$aggregate_tasks_p} {
 		$tasks_where_clause
 		and parent.parent_id is null
 		and p.tree_sortkey between parent.tree_sortkey and tree_right(parent.tree_sortkey)
+	order by
+		parent.project_name,
+		p.tree_sortkey
     "
 }
 
@@ -485,7 +500,7 @@ order by
 
     set ctr 1
     set old_project_id 0
-    set colspan 6
+    set colspan 5
     db_foreach tasks $task_sum_sql {
 
 	set task_sum 0
@@ -506,7 +521,7 @@ order by
 	# insert intermediate headers for every project
 	if {$old_project_id != $project_id} {
 	    append task_sum_html "
-		<tr><td class=rowtitle colspan=$price_colspan>
+		<tr><td class=rowtitle colspan=$colspan>
 		  <A href=/intranet/projects/view?project_id=$project_id>$project_short_name</A>:
 		  $project_nr
 		</td></tr>\n"

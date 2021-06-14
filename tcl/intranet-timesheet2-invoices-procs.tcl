@@ -56,7 +56,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
     set bgcolor(0) " class=roweven "
     set bgcolor(1) " class=rowodd "
     set price_format "%0.2f"
-    set colspan 7
+    set colspan 8
     set return_url [im_url_with_query]
 
 

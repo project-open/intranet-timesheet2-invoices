@@ -76,6 +76,8 @@
 	  </td>
         </tr>
 
+<if @show_start_end_p@ eq "1">
+	
         <tr>
           <td class=roweven><%= [lang::message::lookup "" intranet-timesheet2-invoices.Period_Start "Period Start"] %>:</td>
           <td class=roweven>
@@ -88,7 +90,13 @@
             <input type="text" name="end_date" size="15" value='@end_date@'>
 	  </td>
         </tr>
+</if>
+<else>
+            <input type="hidden" name="start_date" size="15" value='@start_date@'>
+            <input type="hidden" name="end_date" size="15" value='@end_date@'>
 
+</else>
+	
   </table>
 
       </td>
@@ -123,7 +131,7 @@
 	<tr>
 	  <td class=roweven>#intranet-invoices.Note#</td>
           <td class=roweven>
-	    <textarea name=note rows=6 cols=40 wrap="<%=[im_html_textarea_wrap]%>"></textarea>
+	    <textarea name=note rows=4 cols=40 wrap="<%=[im_html_textarea_wrap]%>"></textarea>
 	  </td>
 	</tr>
         </table>
