@@ -84,12 +84,12 @@ set page_title "[_ intranet-timesheet2-invoices.Invoices]"
 set context_bar [im_context_bar $page_title]
 set page_focus "im_header_form.keywords"
 set default_currency [im_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
-
 set filter_company_id $company_id
 
 if {![im_permission $user_id add_invoices]} {
     ad_return_complaint "[_ intranet-timesheet2-invoices.lt_Insufficient_Privileg]" "
     <li>[_ intranet-timesheet2-invoices.lt_You_dont_have_suffici]"    
+    ad_script_abort
 }
 
 set allowed_cost_type [im_cost_type_write_permissions $current_user_id]
@@ -118,8 +118,7 @@ if { $project_id ne "" && $project_id != 0 } {
 
     set invoice_currency $default_currency
     ad_returnredirect "/intranet-timesheet2-invoices/invoices/new-2?select_project=$project_id&[export_vars {target_cost_type_id invoice_currency}]"
-    set page_body ""
-    return
+    ad_script_abort
 }
 
 
