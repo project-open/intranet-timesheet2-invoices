@@ -175,11 +175,19 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 
     set default_material_id [im_material_default_material_id]
     set default_material_name [db_string matname "select acs_object__name(:default_material_id)"]
+    set max_project_name_length [parameter::get_from_package_key -package_key intranet-timesheet2-invoices -parameter "InvoiceFromTimesheetTasksProjectNameMaxSize" -default 40]
+    set show_project_nr_p [parameter::get_from_package_key -package_key intranet-timesheet2-invoices -parameter "InvoiceFromTimesheetTasksShowProjectNrP" -default 0]
 
+    set project_nr_table_header_row ""
+    if {$show_project_nr_p} {
+	set project_nr_table_header_row "<td align=center class=rowtitle>[lang::message::lookup {} intranet-timesheet2-invoices.Task_Nr {Task Nr}]</td>"
+    }
+    
     set task_table_rows "
     <tr> 
 	<td class=rowtitle align=middle>[im_gif -translate_p 1 help "Include in Invoice"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Task_Name "Task Name"]</td>
+	$project_nr_table_header_row
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Material "Material"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Planned_br_Units "Planned<br>Units"]</td>
 	<td align=center class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Billable_br_Units "Billable<br>Units"]</td>
@@ -216,9 +224,12 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
     }
 
     # Show a line with with the selected invoicing type
+    set select_row_colspan 3
+    if {$show_project_nr_p} { incr select_row_colspan }
+    
     append task_table_rows "
 	<tr>
-	  <td colspan=3>Please select the type of hours to use:</td>
+	  <td colspan=$select_row_colspan>Please select the type of hours to use:</td>
 	  <td align=center><input type=radio name=invoice_hour_type value=planned $invoice_radio_disabled $planned_checked></td>
 	  <td align=center><input type=radio name=invoice_hour_type value=billable $invoice_radio_disabled $billable_checked></td>
 	  <td align=center><input type=radio name=invoice_hour_type value=reported $invoice_radio_disabled $reported_checked></td>
@@ -235,7 +246,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 		parent.project_nr as parent_nr,
 		parent.project_name as parent_name,
 		children.project_id,
-		children.project_name,
+		substring(children.project_name for :max_project_name_length) as project_name,
 		children.project_nr,
 		(select count(*) from im_projects childchild where childchild.parent_id = children.project_id) as children_count,
 		im_category_from_id(children.project_status_id) as project_status,
@@ -350,10 +361,18 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 	    }
 	}
 
+	if {[string length $project_name] == $max_project_name_length} { set project_name "${project_name}..." }
+
+	set project_nr_table_row ""
+	if {$show_project_nr_p} {
+	    set project_nr_table_row "<td align=left><A href=/intranet/projects/view?project_id=$project_id>$project_nr</a></td>"
+	}
+    	
 	append task_table_rows "
 	<tr $bgcolor([expr {$ctr % 2}])> 
 	  <td align=middle><input type=checkbox name=include_task value=$project_id $task_disabled $task_checked></td>
 	  <td align=left><nobr>$indent <A href=/intranet/projects/view?project_id=$project_id>$project_name</a></nobr></td>
+	  $project_nr_table_row
 	  <td align=left>$material_name</td>
 	  <td align=right>$planned_units</td>
 	  <td align=right>$billable_units</td>
