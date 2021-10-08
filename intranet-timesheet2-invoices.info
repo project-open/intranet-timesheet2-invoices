@@ -8,7 +8,7 @@
     <singleton-p>t</singleton-p>
     <auto-mount>intranet-timesheet2-invoices</auto-mount>
 
-    <version name="5.1.0.0.0" url="https://www.project-open.net/download/apm/intranet-timesheet2-invoices-5.1.0.0.0.apm">
+    <version name="5.1.0.0.1" url="https://www.project-open.net/download/apm/intranet-timesheet2-invoices-5.1.0.0.1.apm">
 
         <owner url="mailto:frank.bergmann@project-open.com">Frank Bergmann</owner>
         <vendor url="https://www.project-open.com/">]project-open[</vendor>
@@ -24,7 +24,8 @@
         <callbacks>
         </callbacks>
         <parameters>
-        <!-- No version parameters -->
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="InvoiceFromTimesheetTasksProjectNameMaxSize"  default="50" description="Should we limit the length of the project/task name in the InvoiceFromTimesheet screen? Default is 50."/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="InvoiceFromTimesheetTasksShowProjectNrP"  default="0" description="Should we show the project_nr in the InvoiceFromTimesheet screen? Default is 0 to disable this feature."/>
         </parameters>
     </version>
 </package>
