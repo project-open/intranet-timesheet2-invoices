@@ -56,6 +56,9 @@ set user_id [auth::require_login]
 set current_user_id $user_id
 set outline_number_enabled_p [im_column_exists im_invoice_items item_outline_number]
 
+# Maximum size for a reasonable invoice item
+# Actual maximum is the length of the im_invoice_items.item_name field
+set max_item_name_length 100
 
 if {![im_permission $user_id add_invoices]} {
     ad_return_complaint 1 "<li>[_ intranet-timesheet2-invoices.lt_You_dont_have_suffici]"
@@ -197,12 +200,16 @@ foreach item_id $item_ids {
 
 set item_list [array names item_name]
 foreach nr $item_list {
+    set project_id $item_project_id($nr)
     set name $item_name($nr)
+    if {[string length $name] > $max_item_name_length} {
+	# im_invoice_items.item_name has a max length of 200, so cut the name
+	set name "[string range $name 0 $max_item_name_length]... ($project_id)"
+    }
     set units $item_units($nr)
     set uom_id $item_uom_id($nr)
     set type_id $item_type_id($nr)
     set material_id $item_material_id($nr)
-    set project_id $item_project_id($nr)
     set rate $item_rate($nr)
     set currency $item_currency($nr)
     set sort_order $item_sort_order($nr)
