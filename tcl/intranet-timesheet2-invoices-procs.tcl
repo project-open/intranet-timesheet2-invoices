@@ -39,7 +39,6 @@ ad_proc -public im_timesheet_invoice_permissions {
     set admin_p 0
 
     im_cost_permissions $current_user_id $invoice_id view_p read_p write_p admin_p
-
 }
 
 
@@ -395,12 +394,9 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 
 
 
-
-
 # ------------------------------------------------------
 # Promote invoice to timesheet invoice
 # ------------------------------------------------------
-
 
 ad_proc -public im_timesheet_invoice_promote_invoice {
     -invoice_id:required
