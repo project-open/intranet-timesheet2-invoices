@@ -286,7 +286,7 @@ if {$aggregate_tasks_p} {
 			sum(t.units_in_interval) as interval_sum,
 			sum(t.unbilled_units) as unbilled_sum,
 			parent.project_id as project_id,	
-			'' as outline_nr,
+			''::varchar as outline_nr,
 			parent.project_id as task_id,	
 			im_material_name_from_id(t.task_material_id) || ' - ' || im_category_from_id(t.task_type_id) as task_name,
 			t.task_type_id,
