@@ -146,7 +146,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 <li>[_ intranet-core.Note]: 
     [lang::message::lookup "" intranet-timesheet2-invoices.From_and_Through_overlap_bla "
     From and Through dates are time points at 0:00 midnight of their specific date,<br>
-    so sequential prices should have first.Through = second.From."]
+    so sequential prices should have first.valid_through = second.valid_from."]
 </ul>
 <h4>[_ intranet-core.Admin]</h4>
 <ul>
