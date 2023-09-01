@@ -72,7 +72,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.From "From"]</td>
 	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Through "Through"]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Rate]</td>
-	  <td class=rowtitle>[im_gif -translate_p 1 del "Delete"]</td>
+	  <td class=rowtitle><input type='checkbox' name='_dummy' id='pricelist-bulkaction-control' title='Check/uncheck all rows'></td>
 </tr>"
 
     set price_sql "
@@ -118,7 +118,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 	  <td>$valid_from</td>
 	  <td>$valid_through</td>
           <td>[format $price_format $price] $currency</td>
-          <td><input type=checkbox name=price_id.$price_id></td>
+          <td><input type=checkbox name=price_id.$price_id id=price_id.$price_id></td>
 	</tr>"
 	incr ctr
 	set old_currency $currency
@@ -141,6 +141,14 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 </tr>
 </table>
 </form>
+
+<ul>
+<li>[_ intranet-core.Note]: 
+    [lang::message::lookup "" intranet-timesheet2-invoices.From_and_Through_overlap_bla "
+    From and Through dates are time points at 0:00 midnight of their specific date,<br>
+    so sequential prices should have first.Through = second.From."]
+</ul>
+<h4>[_ intranet-core.Admin]</h4>
 <ul>
   <li>
     <a href=/intranet-timesheet2-invoices/price-lists/[export_vars -base upload-prices {company_id return_url}]>
@@ -149,7 +157,17 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
   <li>
     [_ intranet-timesheet2-invoices.lt_Check_this_sample_pra]
     [_ intranet-timesheet2-invoices.lt_It_contains_some_comm]
-</ul>\n"
+</ul>
+
+<script type='text/javascript' nonce='[im_csp_nonce]'> 
+    var e = document.getElementById('pricelist-bulkaction-control');
+    if (e !== null) {	
+        e.addEventListener('click', function (event) {
+            acs_ListCheckAll('price_id', this.checked);
+        }, false);
+    }
+</script>
+"
     return $price_list_html
 }
 
