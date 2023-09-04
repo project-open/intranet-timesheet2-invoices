@@ -84,6 +84,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 		to_char(tp.valid_from, 'YYYY-MM-DD') as valid_from,
 		to_char(tp.valid_through, 'YYYY-MM-DD') as valid_through,
 		im_material_nr_from_id(tp.material_id) as material,
+		p.project_name,
 		p.project_nr
 	from
 		im_timesheet_prices tp
@@ -114,7 +115,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 	  <td><a href='$url'>$uom</a></td>
 	  <td>$task_type</td>
 	  <td>$material</td>
-	  <td>$project_nr</td>
+	  <td>$project_name</td>
 	  <td>$valid_from</td>
 	  <td>$valid_through</td>
           <td>[format $price_format $price] $currency</td>
