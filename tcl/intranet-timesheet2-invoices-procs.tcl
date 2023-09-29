@@ -93,9 +93,10 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 		tp.company_id = :company_id
 	order by
 		tp.currency,
-		tp.uom_id,
-		tp.material_id,
-		tp.task_type_id desc
+		coalesce(tp.uom_id, 0),
+		coalesce(tp.material_id, 0),
+		coalesce(tp.task_type_id, 0) desc,
+		coalesce(tp.valid_from, '2000-01-01'::date)
     "
 
     set price_rows_html ""
