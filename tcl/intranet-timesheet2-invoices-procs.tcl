@@ -65,10 +65,10 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 <table border=0>
 <tr><td colspan=$colspan class=rowtitle align=center>[_ intranet-timesheet2-invoices.Price_List]</td></tr>
 <tr class=rowtitle> 
+	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Project "Project"]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.UoM]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Task_Type]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Material]</td>
-	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Project "Project"]</td>
 	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.From "From"]</td>
 	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Through "Through"]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Rate]</td>
@@ -84,6 +84,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 		to_char(tp.valid_from, 'YYYY-MM-DD') as valid_from,
 		to_char(tp.valid_through, 'YYYY-MM-DD') as valid_through,
 		im_material_nr_from_id(tp.material_id) as material,
+		p.project_name,
 		p.project_nr
 	from
 		im_timesheet_prices tp
@@ -113,13 +114,13 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 
 	append price_rows_html "
         <tr $bgcolor([expr {$ctr % 2}]) nobreak>
-	  <td><a href='$url'>$uom</a></td>
+	  <td>$project_name</td>
+	  <td>$uom</td>
 	  <td>$task_type</td>
 	  <td>$material</td>
-	  <td>$project_nr</td>
 	  <td>$valid_from</td>
 	  <td>$valid_through</td>
-          <td>[format $price_format $price] $currency</td>
+          <td><a href='$url'>[format $price_format $price] $currency</a></td>
           <td><input type=checkbox name=price_id.$price_id id=price_id.$price_id></td>
 	</tr>"
 	incr ctr
