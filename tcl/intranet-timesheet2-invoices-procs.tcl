@@ -165,6 +165,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
     -select_project:required
     -start_date:required
     -end_date:required
+    { -filter_status_id "" }
     -invoice_hour_type:required
 } {
     Returns a formatted HTML table representing the list of subprojects
@@ -226,6 +227,12 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
     # Show a line with with the selected invoicing type
     set select_row_colspan 3
     if {$show_project_nr_p} { incr select_row_colspan }
+
+    set extra_where ""
+    if {"" ne $filter_status_id} {
+	set extra_where "and children.project_status_id in ([join [im_sub_categories $filter_status_id] ","])"
+    }
+
     
     append task_table_rows "
 	<tr>
@@ -287,6 +294,7 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 	where
 		children.tree_sortkey between parent.tree_sortkey and tree_right(parent.tree_sortkey)
 		and parent.project_id in ([join $select_project ","])
+		$extra_where
 	order by 
 		parent.project_name, 
 		children.tree_sortkey

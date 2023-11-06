@@ -22,6 +22,7 @@ ad_page_contract {
     { cost_center_id:integer 0}
     { start_date "" }
     { end_date "" }
+    { filter_status_id "" }
     { return_url ""}
 }
 
@@ -196,6 +197,7 @@ ad_form \
     -form {
         {start_date:text(text),optional {label $start_date_l10n}}
         {end_date:text(text),optional {label $end_date_l10n}}
+	{filter_status_id:text(im_category_tree),optional {label "[_ intranet-timesheet2-tasks.Status]"} {custom {category_type "Intranet Project Status" translate_p 1}}}
     }
 
 template::element::set_value $form_id start_date $start_date
@@ -210,6 +212,7 @@ set task_table_rows [im_timesheet_invoicing_project_hierarchy \
 			 -select_project $select_project \
 			 -start_date $start_date \
 			 -end_date $end_date \
+			 -filter_status_id $filter_status_id \
 			 -invoice_hour_type "" \
 ]
 

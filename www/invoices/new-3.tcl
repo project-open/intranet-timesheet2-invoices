@@ -222,6 +222,7 @@ switch $target_cost_type_id {
     3704 { set default_template_id $default_bill_template_id }
     3706 { set default_template_id $default_po_template_id }
     3724 { set default_template_id $default_delnote_template_id }
+    3752 { set default_template_id $default_invoice_template_id }
 }
 
 set due_date [db_string get_due_date "select to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD') + $default_payment_days from dual"]
