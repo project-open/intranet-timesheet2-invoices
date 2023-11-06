@@ -16,18 +16,21 @@ ad_page_contract {
 } 
 
 set current_user_id [auth::require_login]
-set page_title "<#_ Upload New File/URL#>"
-set page_body "<PRE>\n<A HREF=$return_url><#_ Return to Company Page#></A>\n"
-set context_bar [im_context_bar [list "/intranet/cusomers/" "<#_ Clients#>"] "<#_ Upload CSV#>"]
+set page_title [lang::message::lookup "" intranet-timesheet2-invoices.Upload_File "Upload File"]
+set page_body "<pre>\n<a HREF=$return_url>[lang::message::lookup "" intranet-timesheet2-invoices.Return_to_company_page "Return to company page"]</a>\n"
+set context_bar [im_context_bar [list \
+				     "/intranet/customers/" \
+				     [lang::message::lookup "" intranet-timesheet2-invoices.Customers Customers] \
+				     [lang::message::lookup "" intranet-timesheet2-invoices.Upload_CSV "Upload CSV"]]]
 
 # Get the file from the user.
 # number_of_bytes is the upper-limit
 set max_n_bytes [im_parameter -package_id [im_package_filestorage_id] MaxNumberOfBytes "" 0]
 set tmp_filename [ns_queryget upload_file.tmpfile]
 im_security_alert_check_tmpnam -location "upload-prices-2.tcl" -value $tmp_filename
-if { $max_n_bytes && ([file size $tmp_filename] > $max_n_bytes) } {
-    ad_return_complaint 1 "<#_ Your file is larger than the maximum permissible upload size#>:  [util_commify_number $max_n_bytes] bytes"
-    return
+if {$max_n_bytes && ([file size $tmp_filename] > $max_n_bytes)} {
+    ad_return_complaint 1 "[lang::message::lookup "" intranet-timesheet2-invoices.File_too_large "Your file is larger than the maximum permissible upload size"]: [util_commify_number $max_n_bytes] bytes"
+    ad_script_abort
 }
 
 # strip off the C:\directories... crud and just get the file name
@@ -37,16 +40,16 @@ if {![regexp {([^//\\]+)$} $upload_file match company_filename]} {
 }
 
 if {[regexp {\.\.} $company_filename]} {
-    set error "<#_ Filename contains forbidden characters#>"
-    ad_returnredirect [export_vars -base /error.tcl {error}]
+    set error [lang::message::lookup "" intranet-timesheet2-invoices.Filename_contains_forbidden_characters "Filename contains forbidden characters"]
+    ad_return_complaint 1 $error
+    ad_script_abort
 }
 
-if {![file readable $tmp_filename]} {
-    set err_msg "<#_ Unable to read the file '%tmp_filename%'.#> 
-<#_ Please check the file permissions or price your system administrator.#>"
-    append page_body "\n$err_msg\n"
-    ad_return_template
-    return
+if {[file readable $tmp_filename]} {
+    set err_msg "[lang::message::lookup "" intranet-timesheet2-invoices.Unable_to_read_file "Unable to read the file '%tmp_filename%'."]<br>
+[lang::message::lookup "" intranet-timesheet2-invoices.Please_check_permisions "Please check the file permissions or contact your system administrator."]"
+    ad_return_complaint 1 $err_msg
+    ad_script_abort
 }
     
 set csv_files_content [im_exec cat $tmp_filename]
@@ -60,7 +63,6 @@ set header [string trim [lindex $csv_files 0]]
 set header_csv_fields [split $header ";"]
 set header_len [llength $header_csv_fields]
 
-append page_body "Title-Length=$header_len\n"
 append page_body "\n\n"
 
 db_dml delete_old_prices "delete from im_timesheet_prices where company_id=:company_id"
@@ -68,8 +70,7 @@ db_dml delete_old_prices "delete from im_timesheet_prices where company_id=:comp
 for {set i 1} {$i < $csv_files_len} {incr i} {
     set csv_line [string trim [lindex $csv_files $i]]
     set csv_fields [split $csv_line ";"]
-
-    append page_body "<#_ Line #%i%#>: $csv_line\n"
+    append page_body "[lang::message::lookup "" intranet-core.Line Line] $i: $csv_line\n"
 
     # Skip empty lines or line starting with "#"
     if {"" eq [string trim $csv_line]} { continue }
@@ -110,14 +111,15 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
 
     set errmsg ""
     if {$uom ne ""} {
-        set uom_id [db_string get_uom_id "select category_id from im_categories where category_type='Intranet UoM' and category=:uom" -default 0]
+        set uom_id [db_string get_uom_id "select category_id from im_categories where category_type = 'Intranet UoM' and lower(trim(category)) = lower(trim(:uom))" -default 0]
         if {$uom_id == 0} { append errmsg "<li>Didn't find UoM '$uom'\n" }
     }
 
     if {$company ne ""} {
-         set price_company_id [db_string get_company_id "select company_id from im_companies where company_path = :company" -default 0]
-         if {$price_company_id == 0} { append errmsg "<li>Didn't find Company '$company'\n" }
-         if {$price_company_id != $company_id} { append errmsg "<li>Uploading prices for the wrong company ('$price_company_id' instead of '$company_id')" }
+	set price_company_id [db_string get_company_id "select company_id from im_companies where lower(trim(company_path)) = lower(trim(:company))" -default 0]
+	if {$price_company_id == 0} { append errmsg "<li>Didn't find Company '$company'\n" }
+	if {"company_path" eq $company} { append errmsg "<li>Please replace example 'company_path' with the company path of the real company\n" }
+	if {$price_company_id != $company_id} { append errmsg "<li>Uploading prices for the wrong company ('$price_company_id' instead of '$company_id')\n" }
     }
 
     if {$task_type ne ""} {
@@ -130,20 +132,14 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
 	if {"" == $material_id} {
 	    set material_id [db_string matid "select material_id from im_materials where lower(trim(material_nr)) = lower(trim(:material))"  -default ""]
 	}
+	if {"" == $material_id} { append errmsg "<li>Didn't find material='$material' neither in name nor number of any material\n" }
     }
 
     # It doesn't matter whether prices are given in European "," or American "." decimals
     regsub {,} $price {.} price
 
-#    append page_body "\n"
-#    append page_body "uom_id=$uom_id\n"
-#    append page_body "price_company_id=$price_company_id\n"
-#    append page_body "task_type_id=$task_type_id\n"
-#    append page_body "material_id=$material_id\n"
-#    append page_body "valid_from=$valid_from\n"
-#    append page_body "valid_through=$valid_through\n"
-#    append page_body "price=$price\n"
-#    append page_body "currency=$currency\n"
+
+    # append page_body "[lang::message::lookup "" intranet-core.Line Line] $i: uom_id=$uom_id, price_company_id=$price_company_id, task_type_id=$task_type_id, material_id=$material_id, valid_from=$valid_from, valid_through=$valid_through, price=$price, currency=$currency\n"
 
     set insert_price_sql "INSERT INTO im_timesheet_prices (
        price_id, uom_id, company_id, task_type_id, material_id,
@@ -154,16 +150,18 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     )"
 
     if {$errmsg eq ""} {
+	# Execute the insert only if there were no errors
         if { [catch {
              db_dml insert_price $insert_price_sql
         } err_msg] } {
-	    append page_body \n<font color=red>$err_msg</font>\n";
+	    append page_body "\n<font color=red>$err_msg</font>\n";
         }
     } else {
+	# Otherwise show the list of (conversion) errors
 	append page_body "<font color=red>$errmsg</font>"
     }
 }
 
-append page_body "\n<A HREF=$return_url><#_ Return to Project Page#></A>\n"
+append page_body "\n<a HREF=$return_url>[lang::message::lookup "" intranet-timesheet2-invoices.Return_to_company_page "Return to company page"]</a>\n"
 
 ad_return_template

@@ -39,7 +39,6 @@ ad_proc -public im_timesheet_invoice_permissions {
     set admin_p 0
 
     im_cost_permissions $current_user_id $invoice_id view_p read_p write_p admin_p
-
 }
 
 
@@ -66,14 +65,14 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 <table border=0>
 <tr><td colspan=$colspan class=rowtitle align=center>[_ intranet-timesheet2-invoices.Price_List]</td></tr>
 <tr class=rowtitle> 
+	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Project "Project"]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.UoM]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Task_Type]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Material]</td>
-	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Project "Project"]</td>
 	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.From "From"]</td>
 	  <td class=rowtitle>[lang::message::lookup "" intranet-timesheet2-invoices.Through "Through"]</td>
 	  <td class=rowtitle>[_ intranet-timesheet2-invoices.Rate]</td>
-	  <td class=rowtitle>[im_gif -translate_p 1 del "Delete"]</td>
+	  <td class=rowtitle><input type='checkbox' name='_dummy' id='pricelist-bulkaction-control' title='Check/uncheck all rows'></td>
 </tr>"
 
     set price_sql "
@@ -85,6 +84,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 		to_char(tp.valid_from, 'YYYY-MM-DD') as valid_from,
 		to_char(tp.valid_through, 'YYYY-MM-DD') as valid_through,
 		im_material_nr_from_id(tp.material_id) as material,
+		p.project_name,
 		p.project_nr
 	from
 		im_timesheet_prices tp
@@ -94,9 +94,11 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 		tp.company_id = :company_id
 	order by
 		tp.currency,
-		tp.uom_id,
-		tp.material_id,
-		tp.task_type_id desc
+		p.project_name,
+		coalesce(tp.uom_id, 0),
+		coalesce(tp.task_type_id, 0) desc,
+		coalesce(tp.material_id, 0),
+		coalesce(tp.valid_from, '2000-01-01'::date)
     "
 
     set price_rows_html ""
@@ -112,14 +114,14 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 
 	append price_rows_html "
         <tr $bgcolor([expr {$ctr % 2}]) nobreak>
-	  <td><a href='$url'>$uom</a></td>
+	  <td>$project_name</td>
+	  <td>$uom</td>
 	  <td>$task_type</td>
 	  <td>$material</td>
-	  <td>$project_nr</td>
 	  <td>$valid_from</td>
 	  <td>$valid_through</td>
-          <td>[format $price_format $price] $currency</td>
-          <td><input type=checkbox name=price_id.$price_id></td>
+          <td><a href='$url'>[format $price_format $price] $currency</a></td>
+          <td><input type=checkbox name=price_id.$price_id id=price_id.$price_id></td>
 	</tr>"
 	incr ctr
 	set old_currency $currency
@@ -142,6 +144,14 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 </tr>
 </table>
 </form>
+
+<ul>
+<li>[_ intranet-core.Note]: 
+    [lang::message::lookup "" intranet-timesheet2-invoices.From_and_Through_overlap_bla "
+    From and Through dates are time points at 0:00 midnight of their specific date,<br>
+    so sequential prices should have first.valid_through = second.valid_from."]
+</ul>
+<h4>[_ intranet-core.Admin]</h4>
 <ul>
   <li>
     <a href=/intranet-timesheet2-invoices/price-lists/[export_vars -base upload-prices {company_id return_url}]>
@@ -150,7 +160,17 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
   <li>
     [_ intranet-timesheet2-invoices.lt_Check_this_sample_pra]
     [_ intranet-timesheet2-invoices.lt_It_contains_some_comm]
-</ul>\n"
+</ul>
+
+<script type='text/javascript' nonce='[im_csp_nonce]'> 
+    var e = document.getElementById('pricelist-bulkaction-control');
+    if (e !== null) {	
+        e.addEventListener('click', function (event) {
+            acs_ListCheckAll('price_id', this.checked);
+        }, false);
+    }
+</script>
+"
     return $price_list_html
 }
 
@@ -403,12 +423,9 @@ ad_proc im_timesheet_invoicing_project_hierarchy {
 
 
 
-
-
 # ------------------------------------------------------
 # Promote invoice to timesheet invoice
 # ------------------------------------------------------
-
 
 ad_proc -public im_timesheet_invoice_promote_invoice {
     -invoice_id:required
