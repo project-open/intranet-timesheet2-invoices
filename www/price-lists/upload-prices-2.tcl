@@ -27,6 +27,8 @@ set context_bar [im_context_bar [list \
 # number_of_bytes is the upper-limit
 set max_n_bytes [im_parameter -package_id [im_package_filestorage_id] MaxNumberOfBytes "" 0]
 set tmp_filename [ns_queryget upload_file.tmpfile]
+ns_log Notice "upload-prices-2: tmp_filename=$tmp_filename"
+
 im_security_alert_check_tmpnam -location "upload-prices-2.tcl" -value $tmp_filename
 if {$max_n_bytes && ([file size $tmp_filename] > $max_n_bytes)} {
     ad_return_complaint 1 "[lang::message::lookup "" intranet-timesheet2-invoices.File_too_large "Your file is larger than the maximum permissible upload size"]: [util_commify_number $max_n_bytes] bytes"
@@ -45,7 +47,7 @@ if {[regexp {\.\.} $company_filename]} {
     ad_script_abort
 }
 
-if {[file readable $tmp_filename]} {
+if {![file readable $tmp_filename]} {
     set err_msg "[lang::message::lookup "" intranet-timesheet2-invoices.Unable_to_read_file "Unable to read the file '%tmp_filename%'."]<br>
 [lang::message::lookup "" intranet-timesheet2-invoices.Please_check_permisions "Please check the file permissions or contact your system administrator."]"
     ad_return_complaint 1 $err_msg
