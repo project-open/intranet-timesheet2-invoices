@@ -17,7 +17,8 @@ ad_page_contract {
 
 set current_user_id [auth::require_login]
 set page_title [lang::message::lookup "" intranet-timesheet2-invoices.Upload_File "Upload File"]
-set page_body "<pre>\n<a HREF=$return_url>[lang::message::lookup "" intranet-timesheet2-invoices.Return_to_company_page "Return to company page"]</a>\n"
+# set page_body "<pre>\n<a HREF=$return_url>[lang::message::lookup "" intranet-timesheet2-invoices.Return_to_company_page "Return to company page"]</a>\n"
+set page_body "<pre>"
 set context_bar [im_context_bar [list \
 				     "/intranet/customers/" \
 				     [lang::message::lookup "" intranet-timesheet2-invoices.Customers Customers] \
@@ -164,6 +165,6 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     }
 }
 
-append page_body "\n<a HREF=$return_url>[lang::message::lookup "" intranet-timesheet2-invoices.Return_to_company_page "Return to company page"]</a>\n"
+append page_body "\n</pre><a HREF=$return_url>[lang::message::lookup "" intranet-timesheet2-invoices.Return_to_company_page "Return to company page"]</a>\n"
 
 ad_return_template
