@@ -145,6 +145,15 @@ foreach csv_fields $values_list_of_lists {
 	if {$project_id == 0} {
 	    set project_id [db_string get_project_id "select project_id from im_projects where parent_id is null and lower(trim(project_name)) = lower(trim(:project))" -default 0]
 	}
+
+	# Consistency check: Project should belong to company
+	if {$project_id != 0} {
+	    set project_customer_id [util_memoize [list db_string project_customer "select company_id from im_projects where project_id = $project_id"]]
+	    if {$project_customer_id != $company_id} {
+		append errmsg "<li>Project '$project' does not belong to customer [acs_object_name $company_id]\n"
+	    }
+	}
+
 	if {$project_id == 0} { append errmsg "<li>Didn't find Project '$project'\n" }
 	if {$project_id != $project_id} { append errmsg "<li>Uploading prices for the wrong project ('$project_id' instead of '$project_id')\n" }
     }
