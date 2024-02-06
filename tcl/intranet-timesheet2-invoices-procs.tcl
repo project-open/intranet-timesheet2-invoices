@@ -157,6 +157,7 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
     <a href=/intranet-timesheet2-invoices/price-lists/[export_vars -base upload-prices {company_id return_url}]>
     [_ intranet-timesheet2-invoices.Upload_prices]</A>
     [_ intranet-timesheet2-invoices.lt_for_this_company_via_]
+    [lang::message::lookup "" intranet-timesheet2-invoices.All_existing_prices_will_be_deleted "All existing prices for this company will be deleted."]
   <li>
     [_ intranet-timesheet2-invoices.lt_Check_this_sample_pra]
     [_ intranet-timesheet2-invoices.lt_It_contains_some_comm]

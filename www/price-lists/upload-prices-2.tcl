@@ -54,36 +54,43 @@ if {![file readable $tmp_filename]} {
     ad_return_complaint 1 $err_msg
     ad_script_abort
 }
-    
+
 set csv_files_content [im_exec cat $tmp_filename]
 set csv_files [split $csv_files_content "\n"]
 set csv_files_len [llength $csv_files]
-set csv_header [lindex $csv_files 1]
-set csv_headers [split $csv_header ";"]
+set separator [im_csv_guess_separator $csv_files]
 
 # Check the length of the title line 
-set header [string trim [lindex $csv_files 0]]
-set header_csv_fields [split $header ";"]
-set header_len [llength $header_csv_fields]
+set csv_header [string trim [lindex $csv_files 0]]
+set csv_header_fields [im_csv_split $csv_header $separator]
+set csv_header_len [llength $csv_header_fields]
+set values_list_of_lists [im_csv_get_values $csv_files_content $separator]
+# ad_return_complaint 1 "$csv_header_fields<br>$values_list_of_lists"
 
 append page_body "\n\n"
 
 db_dml delete_old_prices "delete from im_timesheet_prices where company_id=:company_id"
 
-for {set i 1} {$i < $csv_files_len} {incr i} {
-    set csv_line [string trim [lindex $csv_files $i]]
-    set csv_fields [split $csv_line ";"]
-    append page_body "[lang::message::lookup "" intranet-core.Line Line] $i: $csv_line\n"
+# Prepare for a value representing the price list uploaded
+set csv_audit [join $csv_header_fields ";"]
+
+set i 0
+foreach csv_fields $values_list_of_lists {
+    incr i
+    set csv_line_org [join $csv_fields ";"]
+    set csv_line_nospace [join $csv_fields ""]
+    # append page_body "[lang::message::lookup "" intranet-core.Line Line] $i: $csv_line_org\n"
 
     # Skip empty lines or line starting with "#"
-    if {"" eq [string trim $csv_line]} { continue }
-    if {"#" eq [string range $csv_line 0 0]} { continue }
-
+    if {"" eq [string trim $csv_line_nospace]} { continue }
+    if {"#" eq [string range $csv_line_nospace 0 0]} { continue }
+    append csv_audit "\n" $csv_line_org
 
     # Preset values, defined by CSV sheet:
     set uom ""
     set company ""
     set task_type ""
+    set project ""
     set material ""
     set valid_from ""
     set valid_through ""
@@ -91,8 +98,8 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     set currency ""
     set price_company_id $company_id
 
-    for {set j 0} {$j < $header_len} {incr j} {
-	set var_name [lindex $header_csv_fields $j]
+    for {set j 0} {$j < $csv_header_len} {incr j} {
+	set var_name [lindex $csv_header_fields $j]
 	set var_value [lindex $csv_fields $j]
 	set cmd "set $var_name "
 	append cmd "\""
@@ -111,11 +118,14 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     set uom_id ""
     set task_type_id ""
     set material_id ""
+    set project_id ""
 
     set errmsg ""
     if {$uom ne ""} {
         set uom_id [db_string get_uom_id "select category_id from im_categories where category_type = 'Intranet UoM' and lower(trim(category)) = lower(trim(:uom))" -default 0]
         if {$uom_id == 0} { append errmsg "<li>Didn't find UoM '$uom'\n" }
+    } else {
+	append errmsg "<li>UoM is required.\n"
     }
 
     if {$company ne ""} {
@@ -130,6 +140,15 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
         if {$task_type_id == 0} { append errmsg "<li>Didn't find Task Type '$task_type'\n" }
     }
 
+    if {$project ne ""} {
+	set project_id [db_string get_project_id "select project_id from im_projects where parent_id is null and lower(trim(project_path)) = lower(trim(:project))" -default 0]
+	if {$project_id == 0} {
+	    set project_id [db_string get_project_id "select project_id from im_projects where parent_id is null and lower(trim(project_name)) = lower(trim(:project))" -default 0]
+	}
+	if {$project_id == 0} { append errmsg "<li>Didn't find Project '$project'\n" }
+	if {$project_id != $project_id} { append errmsg "<li>Uploading prices for the wrong project ('$project_id' instead of '$project_id')\n" }
+    }
+
     if {$material ne ""} {
 	set material_id [db_string matid "select material_id from im_materials where lower(trim(material_name)) = lower(trim(:material))"  -default ""]
 	if {"" == $material_id} {
@@ -142,20 +161,18 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     regsub {,} $price {.} price
 
 
-    # append page_body "[lang::message::lookup "" intranet-core.Line Line] $i: uom_id=$uom_id, price_company_id=$price_company_id, task_type_id=$task_type_id, material_id=$material_id, valid_from=$valid_from, valid_through=$valid_through, price=$price, currency=$currency\n"
+    append page_body "[lang::message::lookup "" intranet-core.Line Line] $i: uom_id=$uom_id, price_company_id=$price_company_id, task_type_id=$task_type_id, material_id=$material_id, valid_from=$valid_from, valid_through=$valid_through, price=$price, currency=$currency\n"
 
     set insert_price_sql "INSERT INTO im_timesheet_prices (
-       price_id, uom_id, company_id, task_type_id, material_id,
-       valid_from, valid_through, currency, price
+       price_id, uom_id, company_id, task_type_id, project_id, material_id, valid_from, valid_through, currency, price
     ) VALUES (
-       nextval('im_timesheet_prices_seq'), :uom_id, :price_company_id, :task_type_id, :material_id,
-       :valid_from, :valid_through, :currency, :price
+       nextval('im_timesheet_prices_seq'), :uom_id, :price_company_id, :task_type_id, :project_id, :material_id, :valid_from, :valid_through, :currency, :price
     )"
 
     if {$errmsg eq ""} {
 	# Execute the insert only if there were no errors
         if { [catch {
-             db_dml insert_price $insert_price_sql
+	    db_dml insert_price $insert_price_sql
         } err_msg] } {
 	    append page_body "\n<font color=red>$err_msg</font>\n";
         }
@@ -165,6 +182,18 @@ for {set i 1} {$i < $csv_files_len} {incr i} {
     }
 }
 
+# If no errors (""==errmsg) then write the csv_audit into a company field for audit.
+if {$errmsg eq "" && [db_column_exists "im_companies" "price_list_audit"]} { 
+    # ad_return_complaint 1 "<pre>$csv_audit</pre><br>errmsg=$errmsg"
+    db_dml update_company_csv_audit "
+	update im_companies 
+	set price_list_audit = :csv_audit
+	where company_id = :company_id
+    "
+    im_audit -object_type "im_company" -object_id $company_id -action after_update
+}
+
 append page_body "\n</pre><a HREF=$return_url>[lang::message::lookup "" intranet-timesheet2-invoices.Return_to_company_page "Return to company page"]</a>\n"
+
 
 ad_return_template

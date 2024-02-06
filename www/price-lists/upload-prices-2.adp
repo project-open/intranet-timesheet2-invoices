@@ -5,7 +5,7 @@
 <property name="context">@context_bar;literal@</property>
 <property name="main_navbar_label">finance</property>
 
-<h1>Successfully Uploaded Prices</h1>
+<h1>Uploaded Prices</h1>
 <p>Here is list of the imported CSV lines:</p>
 
 @page_body;noquote@
