@@ -1,24 +1,30 @@
-uom;company;task_type;material;price;currency
+uom;company;task_type;project;material;price;currency;valid_from;valid_through
 
-# The system ignores empty lines and lines starting with a '#' (comments);;;;;
-# Please save this file to your local disc an replace 'company_path' by the...;;;;;
-# ... path of your company.;;;;;
+# The system ignores empty lines and lines starting with a '#' (comments);;;;;;;;
+# Please save this file to your local disc and modify;;;;;;;;
+# uom: Required: Unit of Measure taken from 'Intranet UoM' category for example 'Hour' for a price per hour;;;;;;;;
+# company: Required: The 'Company Short Name' (im_companies.company_path) of the company;;;;;;;;
+# task_type: Optional: Type of project or task from 'Intranet Project Type' category;;;;;;;;
+# project: Project name or number of a main project;;;;;;;;
+# material: Optional: Material name or number from im_materials the type of service;;;;;;;;
+# price: Required: The price as a floating number with dot or comma decimal separator;;;;;;;;
+# currency: Required: EUR or USD;;;;;;;;
+# valid_from: ISO start date (YYYY-MM-DD) of the validity period (including this date)
+# valid_through: ISO end date (YYYY-MM-DD) of the validity period (including this date)
 
+# Default prices for a specific company (not the one from where you uploaded this CSV);;;;;;;;
+Hour;company_path;;;;100;EUR;;
+Day;company_path;;;;800;EUR;;
 
-# Default prices for EUR - These prices are used if no other information is specified;;;;;
-Hour;company_path;;;100;EUR
-Day;company_path;;;800;EUR
+# Default prices for a specific interval
+Hour;company_path;;;;100;EUR;2024-01-01;2024-12-31
+Day;company_path;;;;800;EUR;2024-01-01;2024-12-31
 
-# Hourly prices for specific materials;;;;;
-Hour;company_path;;sw_java_hour;80;EUR
-Hour;company_path;;sw_testing_hour;40;EUR
-Hour;company_path;;pm_pm_hour;120;EUR
+# Hourly prices for specific materials;;;;;;;;
+Hour;company_path;;;sw_java_hour;80;EUR;;
+Hour;company_path;;;sw_testing_hour;40;EUR;;
+Hour;company_path;;;pm_pm_hour;120;EUR;;
 
-# Daily prices for specific materials;;;;;
-Day;company_path;;sw_java_hour;800;EUR
-Day;company_path;;sw_testing_hour;400;EUR
-Day;company_path;;pm_pm_hour;1000;EUR
-
-# Default prices for USD - These prices are used if no other information is specified;;;;;
-Hour;company_path;;;120;USD
-Day;company_path;;;1000;USD
+# Default prices for USD - These prices are used for invoices in USD;;;;;;;;
+Hour;company_path;;;120;USD;;
+Day;company_path;;;1000;USD;;
