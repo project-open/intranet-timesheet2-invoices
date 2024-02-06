@@ -83,7 +83,8 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 		im_category_from_id(tp.task_type_id) as task_type,
 		to_char(tp.valid_from, 'YYYY-MM-DD') as valid_from,
 		to_char(tp.valid_through, 'YYYY-MM-DD') as valid_through,
-		im_material_nr_from_id(tp.material_id) as material,
+		im_material_nr_from_id(tp.material_id) as material_nr,
+		im_material_name_from_id(tp.material_id) as material_name,
 		p.project_name,
 		p.project_nr
 	from
@@ -114,10 +115,10 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 
 	append price_rows_html "
         <tr $bgcolor([expr {$ctr % 2}]) nobreak>
-	  <td>$project_name</td>
+	  <td><a href='[export_vars -base "/intranet/projects/view" {project_id}]' target=_>$project_name</a></td>
 	  <td>$uom</td>
 	  <td>$task_type</td>
-	  <td>$material</td>
+	  <td>$material_name ($material_nr)</td>
 	  <td>$valid_from</td>
 	  <td>$valid_through</td>
           <td><a href='$url'>[format $price_format $price] $currency</a></td>
