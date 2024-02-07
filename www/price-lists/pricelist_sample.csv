@@ -10,7 +10,7 @@ uom;company;task_type;project;material;price;currency;valid_from;valid_through
 # price: Required: The price as a floating number with dot or comma decimal separator;;;;;;;;
 # currency: Required: EUR or USD;;;;;;;;
 # valid_from: ISO start date (YYYY-MM-DD) of the validity period (including this date)
-# valid_through: ISO end date (YYYY-MM-DD) of the validity period (including this date)
+# valid_through: ISO end date (YYYY-MM-DD) of the validity period (excluding this date)
 
 # Default prices for a specific company (not the one from where you uploaded this CSV);;;;;;;;
 Hour;company_path;;;;100;EUR;;
