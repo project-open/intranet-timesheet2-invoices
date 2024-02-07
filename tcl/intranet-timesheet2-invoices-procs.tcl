@@ -150,10 +150,17 @@ ad_proc im_timesheet_price_component { user_id company_id return_url} {
 <li>[_ intranet-core.Note]: 
     [lang::message::lookup "" intranet-timesheet2-invoices.From_and_Through_overlap_bla "
     From and Through dates are time points at 0:00 midnight of their specific date,<br>
-    so sequential prices should have first.valid_through = second.valid_from."]
+    which is equivlent to say that the from date is inclusive and the through date is exclusive.<br>
+    Sequential prices should have first.through = second.from,<br>
+    for example 2024-01-01 to 2025-01-01 and 2025-01-01 to 2026-01-01."]
 </ul>
 <h4>[_ intranet-core.Admin]</h4>
 <ul>
+
+  <li>
+    <a href='[export_vars -base "/intranet-timesheet2-invoices/price-lists/pricelist.csv" {company_id return_url}]' target=_>
+    [lang::message::lookup "" intranet-timesheet2-invoices.Download_prices "Download prices"]</a>
+    [lang::message::lookup "" intranet-timesheet2-invoices.for_this_company_via_CSV "for this company via a CSV file."]
   <li>
     <a href=/intranet-timesheet2-invoices/price-lists/[export_vars -base upload-prices {company_id return_url}]>
     [_ intranet-timesheet2-invoices.Upload_prices]</A>
